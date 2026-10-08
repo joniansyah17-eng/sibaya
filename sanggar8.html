@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <meta name="referrer" content="strict-origin-when-cross-origin" />
-<title>Sanggar Seni Enggang Borneo — SIBAYA Kota Balikpapan</title>
+<title>Sanggar Seni Jenebora — SIBAYA Kota Balikpapan</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,500&display=swap" rel="stylesheet">
@@ -25,7 +25,6 @@
     color:var(--ink);background:#FFFFFF;line-height:1.65;
     overflow-x:hidden;-webkit-font-smoothing:antialiased;position:relative;
   }
-  /* BATIK TIPIS — REMANG PUTIH */
   body::before{
     content:"";position:fixed;inset:0;
     background-image:url('batik.png');background-repeat:repeat;
@@ -42,13 +41,11 @@
   .container{width:min(1200px, calc(100% - clamp(28px,5vw,64px)));margin:auto;position:relative;z-index:1}
   ::selection{background:var(--wine-deep);color:var(--gold-light)}
 
-  /* SCROLLBAR */
   ::-webkit-scrollbar{width:10px;height:10px}
   ::-webkit-scrollbar-track{background:#F5F5F5}
   ::-webkit-scrollbar-thumb{background:var(--wine-deep);border-radius:10px;border:2px solid #F5F5F5}
   ::-webkit-scrollbar-thumb:hover{background:var(--wine-dark)}
 
-  /* TOPBAR */
   .topbar{
     background:var(--wine-deep);color:var(--gold-light);
     font-size:11.5px;height:38px;
@@ -58,7 +55,6 @@
     position:relative;z-index:2;
   }
 
-  /* NAVBAR */
   .navbar{
     position:sticky;top:0;z-index:100;
     background:rgba(255,255,255,.96);
@@ -108,14 +104,12 @@
     background:var(--wine-soft);flex-shrink:0;
   }
 
-  /* EFEK SCROLL */
   .munculin{
     opacity:0;transform:translateY(24px);
     transition:opacity .7s ease, transform .7s ease;
   }
   .munculin.lihat{opacity:1;transform:translateY(0)}
 
-  /* JUDUL */
   .judul-wrap{
     text-align:center;
     padding:clamp(50px,7vw,70px) 20px 30px;
@@ -141,73 +135,36 @@
     margin:18px auto 0;border-radius:3px;
   }
 
-  /* KONTEN */
   .konten{
     padding:20px 0 clamp(60px,8vw,90px);
     position:relative;z-index:1;
   }
 
-  /* BARIS: FOTO + DESKRIPSI */
-  .baris-atas{
-    display:grid;
-    grid-template-columns:1fr 1.3fr;
-    gap:36px;
-    align-items:start;
-    margin-bottom:36px;
-  }
-  .foto-sanggar{
-    border-radius:14px;
+   /* FOTO PORTRAIT BESAR */
+  .foto-portrait{
+    border-radius:16px;
     overflow:hidden;
     box-shadow:var(--shadow);
     border:1.5px solid var(--line);
+    margin:0 auto 36px;
     cursor:zoom-in;
     transition:transform .4s var(--ease),box-shadow .4s var(--ease);
+    max-width:380px;
+    width:100%;
   }
-  .foto-sanggar:hover{
+  .foto-portrait:hover{
     transform:translateY(-5px);
     box-shadow:var(--shadow-lg);
     border-color:var(--gold);
   }
-  .foto-sanggar img{
+  .foto-portrait img{
     width:100%;
-    height:340px;
+    height:auto;
     object-fit:cover;
     display:block;
     transition:transform .6s var(--ease);
   }
-  .foto-sanggar:hover img{transform:scale(1.04)}
-  .deskripsi p{
-    font-size:14.5px;
-    color:var(--text);
-    line-height:1.85;
-    margin:0 0 14px;
-    text-align:justify;
-  }
-  .deskripsi p:last-child{margin-bottom:0;}
-
-  /* DUA FOTO */
-  .dua-foto{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:16px;
-    margin-bottom:36px;
-  }
-  .dua-foto img{
-    width:100%;
-    height:250px;
-    object-fit:cover;
-    border-radius:12px;
-    box-shadow:var(--shadow);
-    border:1.5px solid var(--line);
-    display:block;
-    cursor:zoom-in;
-    transition:transform .4s var(--ease),box-shadow .4s var(--ease);
-  }
-  .dua-foto img:hover{
-    transform:translateY(-4px);
-    box-shadow:var(--shadow-lg);
-    border-color:var(--gold);
-  }
+  .foto-portrait:hover img{transform:scale(1.02)}
 
   /* CARD */
   .card{
@@ -243,96 +200,43 @@
     display:inline-block;
   }
 
-  /* VISI */
-  .visi{
-    background:linear-gradient(135deg,var(--wine-deep) 0%,var(--wine-dark) 100%);
-    color:#fff;
-    border-radius:12px;
-    padding:26px 30px;
-    font-family:'Playfair Display',serif;
-    font-size:17px;
-    line-height:1.6;
-    font-style:italic;
-    box-shadow:0 8px 20px rgba(107,68,35,.2);
-    position:relative;
-    overflow:hidden;
-  }
-  .visi::before{
-    content:"“";
-    position:absolute;
-    top:-10px;left:14px;
-    font-family:'Playfair Display',serif;
-    font-size:90px;
-    color:rgba(232,196,106,.15);
-    line-height:1;
-    pointer-events:none;
-  }
-  .visi p{position:relative;z-index:1;margin:0;}
-
-  /* MISI */
-  .misi{
-    list-style:none;
-    padding:0;
-    margin:0;
-    counter-reset:misi;
-  }
-  .misi li{
-    padding:13px 0 13px 38px;
-    position:relative;
+  .card p{
     font-size:14.5px;
     color:var(--text);
-    border-bottom:1px solid var(--line);
-    counter-increment:misi;
-    transition:padding-left .3s ease, color .3s ease;
+    line-height:1.85;
+    margin:0 0 12px;
+    text-align:justify;
   }
-  .misi li:last-child{border-bottom:none;}
-  .misi li:hover{
-    padding-left:46px;
-    color:var(--wine-deep);
-  }
-  .misi li::before{
-    content:counter(misi);
-    position:absolute;
-    left:8px;
-    color:var(--wine-deep);
-    font-family:'Playfair Display',serif;
-    font-weight:800;
-    font-size:13px;
-    top:13px;
-    width:24px;height:24px;
-    background:rgba(217,169,58,.25);
-    border-radius:50%;
-    display:grid;place-items:center;
-    transition:background .3s ease;
-  }
-  .misi li:hover::before{background:var(--gold);color:var(--wine-deep);}
+  .card p:last-child{margin-bottom:0;}
 
-  /* DUA FOTO BAWAH */
-  .dua-foto-bawah{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:16px;
-    margin-bottom:22px;
-  }
-  .dua-foto-bawah img{
-    width:100%;
-    height:300px;
-    object-fit:cover;
-    border-radius:12px;
+    /* FOTO DI BAWAH PENGALAMAN */
+  .foto-pengalaman{
+    border-radius:14px;
+    overflow:hidden;
     box-shadow:var(--shadow);
     border:1.5px solid var(--line);
-    display:block;
+    margin:0 auto 36px;
     cursor:zoom-in;
     transition:transform .4s var(--ease),box-shadow .4s var(--ease);
+    max-width:560px;
+    width:100%;
   }
-  .dua-foto-bawah img:hover{
-    transform:translateY(-4px);
+  .foto-pengalaman:hover{
+    transform:translateY(-5px);
     box-shadow:var(--shadow-lg);
     border-color:var(--gold);
   }
+  .foto-pengalaman img{
+    width:100%;
+    height:auto;
+    object-fit:cover;
+    display:block;
+    transition:transform .6s var(--ease);
+  }
+  .foto-pengalaman:hover img{transform:scale(1.02)}
 
-  /* ALAMAT */
-  .alamat{
+  /* KONTAK */
+  .kontak-box{
     background:#fff;
     border:1.5px solid var(--line);
     border-radius:12px;
@@ -342,12 +246,12 @@
     line-height:1.9;
     transition:border-color .3s ease, transform .3s var(--ease), box-shadow .3s ease;
   }
-  .alamat:hover{
+  .kontak-box:hover{
     border-color:var(--gold);
     transform:translateY(-3px);
     box-shadow:var(--shadow);
   }
-  .alamat strong{
+  .kontak-box strong{
     color:var(--wine-deep);
     display:block;
     font-size:11px;
@@ -356,10 +260,10 @@
     margin-bottom:8px;
     font-weight:800;
   }
-  .alamat a{color:var(--wine-dark);font-weight:700;transition:color .3s ease;}
-  .alamat a:hover{color:var(--gold);}
+  .kontak-box a{color:var(--wine-dark);font-weight:700;transition:color .3s ease;}
+  .kontak-box a:hover{color:var(--gold);}
 
-  /* TOMBOL */
+  /* TOMBOL KEMBALI */
   .kembali{
     text-align:center;
     margin-top:40px;
@@ -468,16 +372,13 @@
     }
     .nav-links.open{max-height:520px;opacity:1;padding:12px 16px 18px}
     .nav-links a{padding:13px 14px;border-radius:8px;font-size:14px}
-    .baris-atas{grid-template-columns:1fr;gap:24px}
   }
   @media(max-width:600px){
     .container{width:calc(100% - 32px)}
-    .foto-sanggar img{height:260px}
-    .dua-foto img{height:200px}
-    .dua-foto-bawah img{height:220px}
     .judul-wrap h1{font-size:24px}
     .card{padding:22px 20px}
-    .dua-foto, .dua-foto-bawah{grid-template-columns:1fr}
+    .foto-portrait img{height:420px}
+    .foto-pengalaman img{height:260px}
   }
 </style>
 </head>
@@ -507,7 +408,7 @@
   </nav>
 
   <div class="judul-wrap">
-    <h1>Sanggar Seni Enggang Borneo</h1>
+    <h1>Sanggar Seni Jenebora</h1>
     <div class="sub">Sanggar Binaan Kota Balikpapan</div>
     <div class="garis"></div>
   </div>
@@ -515,64 +416,56 @@
   <section class="konten">
     <div class="container">
 
-      <div class="baris-atas">
-        <div class="foto-sanggar" onclick="bukaFoto(this.querySelector('img').src)">
-          <img src="s4.jpg" alt="Sanggar Enggang Borneo">
-        </div>
-        <div class="deskripsi">
-          <p>
-            Sanggar Tari Enggang Borneo merupakan wadah kawah candra dimuka dalam pembinaan kepada para generasi dalam memperkenalkan, mempelajari dan mengemas seni tradisi agar kesenian tersebut dapat terus terpelihara, layak ditampilkan dalam event-event regional nasional bahkan internasional, dapat meningkatkan mutu seni tradisi serta dapat membantu mempromosikan wisata seni budaya Kalimantan.
-          </p>
-          <p>
-            Nama Sanggar Tari Enggang Borneo berarti burung yang sangat indah adalah Kreasi/Gaya dan Borneo adalah wilayah dimana sanggar seni itu berada. Didirikan di Balikpapan, Kalimantan Timur pada tanggal 16 Februari 2025. Sanggar Tari Enggang Borneo mudah-mudahan dapat bermanfaat untuk pelestarian seni budaya di Kalimantan.
-          </p>
-        </div>
-      </div>
-
-      <div class="dua-foto">
-        <img src="foto1.jpg" alt="foto1" onclick="bukaFoto(this.src)">
-        <img src="foto2.jpg" alt="foto2" onclick="bukaFoto(this.src)">
-      </div>
-
+      <!-- DESKRIPSI -->
       <div class="card">
-        <h2 class="label">Visi</h2>
-        <div class="visi">
-          <p>Menjadikan nilai tradisi seni sebagai acuan dalam berkarya dan menjadi sebuah wadah potensial untuk mencapai sanggar seni terbaik, terdepan dalam bidang seni budaya.</p>
-        </div>
+        <h2 class="label">Deskripsi</h2>
+        <p>
+          Sanggar Seni Jenebora bergerak di bidang tari traditional, modern, dan kontemporer, serta dalam bidang produksi musik traditional dan modern, juga berperan aktif dalam pendidikan kesenian dan telah diikuti oleh berbagai kalangan usia.
+        </p>
       </div>
 
+      <!-- FOTO PORTRAIT BESAR -->
+      <div class="foto-portrait" onclick="bukaFoto(this.querySelector('img').src)">
+        <img src="jenebora1.jpg" alt="Sanggar Seni Jenebora">
+      </div>
+
+      <!-- TARI TRADISIONAL & LINGKUP -->
       <div class="card">
-        <h2 class="label">Misi</h2>
-        <ul class="misi">
-          <li>Meningkatkan usaha pelestarian dan pengembangan nilai seni tradisi.</li>
-          <li>Meningkatkan SDM para seniman tradisional.</li>
-          <li>Meningkatkan kreatifitas, inovasi, intelektual, serta kemampuan dalam pengemasan seni tradisional.</li>
-          <li>Berpartisipasi secara pro-aktif dalam bidang seni tradisional Kalimantan.</li>
-          <li>Menciptakan karya yang kompetitif dari nilai tradisi menjadi sebuah seni pertunjukan.</li>
-          <li>Membantu meningkatkan ekonomi untuk para senimannya.</li>
-        </ul>
+        <h2 class="label">Sanggar Tari dan Ruang Lingkup</h2>
+        <p>
+          Tari Tradisional, Tari Kreasi Daerah dan Live Music Etnic.
+        </p>
       </div>
 
-      <div class="dua-foto-bawah">
-        <img src="acara.jpg" alt="acara" onclick="bukaFoto(this.src)">
-        <img src="organisasi.jpg" alt="organisasi" onclick="bukaFoto(this.src)">
+      <!-- PENGALAMAN -->
+      <div class="card">
+        <h2 class="label">Pengalaman</h2>
+        <p>
+          Ikut aktif dalam kontribusi penyelenggaraan acara dalam Pemerintahan Kota Balikpapan.
+        </p>
       </div>
 
+      <!-- FOTO DI BAWAH PENGALAMAN -->
+      <div class="foto-pengalaman" onclick="bukaFoto(this.querySelector('img').src)">
+        <img src="jenebora2.jpg" alt="Kegiatan Sanggar Seni Jenebora">
+      </div>
+
+      <!-- PROGRAM KEGIATAN -->
       <div class="card">
         <h2 class="label">Program Kegiatan</h2>
-        <p style="font-size:14.5px;color:var(--text);line-height:1.85;margin:0;text-align:justify;">
+        <p>
           Pendiri Sanggar Seni adalah modal dasar yang dapat membantu usaha pelestarian dan pengembangan seni tradisional. Keragaman kesenian tradisional yang hidup dan berkembang di Kalimantan sangat beragam, itu dapat dijadikan modal untuk usaha peningkatan kualitas seni tradisional tersebut dan merupakan modal yang sangat berharga dalam usaha pelestarian tersebut.
         </p>
       </div>
 
-      <div class="alamat">
-        <strong>Alamat</strong>
-        Komplex Perum Bukit Villa Damai Blok 05 RT 32, Gunung Bahagia, Balikpapan Selatan, Kalimantan Timur<br>
-        No. Tlp: 0822-4474-4572<br>
-        Email: <a href="mailto:enggangborneo25@gmail.com">enggangborneo25@gmail.com</a><br>
-        Telp: 0822-4474-4572
+      <!-- KONTAK -->
+      <div class="kontak-box">
+        <strong>Kontak</strong>
+        08999441978 (Amrizal)<br>
+        Instagram &amp; FB: <a href="#">@jenebora_sanggarseni</a>
       </div>
 
+      <!-- KEMBALI -->
       <div class="kembali">
         <a href="sanggar-binaan.html">← Kembali ke Sanggar Binaan</a>
       </div>
@@ -634,7 +527,7 @@
     link.addEventListener('click', () => navLinks.classList.remove('open'));
   });
 
-  const items = document.querySelectorAll('.card, .baris-atas, .dua-foto, .dua-foto-bawah, .alamat, .kembali');
+  const items = document.querySelectorAll('.card, .foto-portrait, .foto-pengalaman, .kontak-box, .kembali');
   items.forEach(el => el.classList.add('munculin'));
 
   const obs = new IntersectionObserver((entries) => {

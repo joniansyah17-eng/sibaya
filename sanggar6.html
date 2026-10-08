@@ -1,355 +1,471 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Yayasan Seni Muda Kreatif Berbudaya - SIBAYA</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --maroon:#6b1b2b;
-      --maroon-dark:#4a0f1c;
-      --maroon-soft:#f5e6ea;
-      --ink:#40242b;
-      --text:#6f6468;
-      --line:#ece0e3;
-      --shadow:0 6px 18px rgba(67,30,39,.08);
-    }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      font-family:Inter,Arial,sans-serif;
-      color:var(--ink);
-      background:#fff;
-      line-height:1.7;
-      overflow-x:hidden;
-    }
-    .navbar, section, footer { position: relative; z-index: 1; }
-    img{display:block;width:100%}
-    a{text-decoration:none;color:inherit}
-    .container{width:min(1130px, calc(100% - 42px));margin:auto}
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="referrer" content="strict-origin-when-cross-origin" />
+<title>Yayasan Seni Muda Kreatif Berbudaya — SIBAYA Kota Balikpapan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --wine:#A6785A;--wine-dark:#8B5E3C;--wine-deep:#6B4423;--wine-soft:#F5EFE8;
+    --gold:#D9A93A;--gold-light:#E8C46A;--ink:#2E1D12;--text:#5F4838;
+    --line:#E6D5C0;--white:#FFFFFF;
+    --shadow:0 10px 30px rgba(107,68,35,.12);
+    --shadow-lg:0 24px 50px rgba(107,68,35,.18);
+    --ease:cubic-bezier(.22,1,.36,1);
+    --nav-h:clamp(60px,8vw,72px);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    font-family:'Inter',system-ui,sans-serif;
+    color:var(--ink);background:#FFFFFF;line-height:1.65;
+    overflow-x:hidden;-webkit-font-smoothing:antialiased;position:relative;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;
+    background-image:url('batik.png');background-repeat:repeat;
+    background-size:clamp(240px,30vw,360px);opacity:.04;
+    pointer-events:none;z-index:0;filter:sepia(.5) saturate(1);
+  }
+  body::after{
+    content:"";position:fixed;inset:0;
+    background:rgba(255,255,255,.85);pointer-events:none;z-index:0;
+  }
+  img{display:block;width:100%;height:auto}
+  a{text-decoration:none;color:inherit}
+  button{font-family:inherit;cursor:pointer;border:0;background:none}
+  .container{width:min(1200px, calc(100% - clamp(28px,5vw,64px)));margin:auto;position:relative;z-index:1}
+  ::selection{background:var(--wine-deep);color:var(--gold-light)}
 
-    .munculin{
-      opacity:0;
-      transform:translateY(24px);
-      transition:opacity .7s ease, transform .7s ease;
-    }
-    .munculin.lihat{
-      opacity:1;
-      transform:translateY(0);
-    }
+  ::-webkit-scrollbar{width:10px;height:10px}
+  ::-webkit-scrollbar-track{background:#F5F5F5}
+  ::-webkit-scrollbar-thumb{background:var(--wine-deep);border-radius:10px;border:2px solid #F5F5F5}
+  ::-webkit-scrollbar-thumb:hover{background:var(--wine-dark)}
 
-    /* NAVBAR */
-    .navbar{
-      position:sticky; top:0; z-index:50;
-      background-image:url('navbar.jpg');
-      background-size:cover; background-position:center;
-      color:#fff; box-shadow:0 4px 16px rgba(0,0,0,.08);
-    }
-    .nav-inner{
-      min-height:70px; display:flex; align-items:center;
-      justify-content:space-between; gap:30px;
-    }
-    .brand{
-      display:flex; align-items:center; gap:10px;
-      font-size:23px; font-weight:500; letter-spacing:-.7px;
-    }
-    .brand img{height:40px;width:auto;}
-    .nav-links{display:flex;align-items:center;gap:20px;font-size:12.5px;}
-    .nav-links a{opacity:.93;white-space:nowrap;}
-    .nav-links a:hover{opacity:1}
-    .nav-links a.active{
-      font-weight:700;opacity:1;
-      text-decoration:underline;text-underline-offset:5px;
-      text-decoration-thickness:2px;
-    }
-    .hamburger{
-      display:none;width:42px;height:42px;
-      border:1px solid rgba(255,255,255,.35);
-      border-radius:8px;color:#fff;background:transparent;
-      font-size:20px;cursor:pointer;
-    }
+  .topbar{
+    background:var(--wine-deep);color:var(--gold-light);
+    font-size:11.5px;height:38px;
+    display:flex;align-items:center;justify-content:center;
+    letter-spacing:.08em;font-weight:600;padding:0 16px;
+    text-align:center;border-bottom:2px solid var(--gold);
+    position:relative;z-index:2;
+  }
 
-    /* JUDUL */
-    .judul-wrap{
-      text-align:center;
-      padding:44px 20px 20px;
-    }
-    .judul-wrap h1{
-      font-family:"Playfair Display",serif;
-      font-size:34px;
-      color:var(--maroon);
-      margin:0 0 8px;
-      letter-spacing:-.5px;
-      line-height:1.25;
-    }
-    .judul-wrap .sub{
-      font-size:12px;
-      color:var(--text);
-      letter-spacing:1.5px;
-      text-transform:uppercase;
-    }
-    .judul-wrap .garis{
-      width:60px;height:3px;background:var(--maroon);
-      margin:14px auto 0;border-radius:3px;
-    }
+  .navbar{
+    position:sticky;top:0;z-index:100;
+    background:rgba(255,255,255,.96);
+    backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+    transition:box-shadow .3s ease;
+    border-bottom:2px solid var(--wine-soft);
+  }
+  .navbar.scrolled{box-shadow:0 6px 20px rgba(107,68,35,.08)}
+  .nav-inner{
+    min-height:var(--nav-h);display:flex;align-items:center;
+    justify-content:space-between;gap:20px;
+  }
+  .brand{
+    display:flex;align-items:center;gap:10px;
+    font-family:'Playfair Display',serif;
+    font-size:20px;font-weight:800;color:var(--wine-deep);min-width:0;
+  }
+  .brand-mark{
+    width:40px;height:40px;border-radius:10px;
+    background:var(--wine-deep);color:var(--gold-light);
+    display:grid;place-items:center;
+    font-family:'Playfair Display',serif;font-weight:800;font-size:16px;flex-shrink:0;
+  }
+  .brand img{height:40px;width:40px;object-fit:contain;border-radius:8px;flex-shrink:0}
+  .brand-sub{
+    display:block;font-family:'Inter',sans-serif;
+    font-size:9px;font-weight:600;letter-spacing:2px;
+    color:var(--wine);margin-top:-1px;text-transform:uppercase;
+  }
+  .nav-links{display:flex;align-items:center;gap:2px;font-size:13px;font-weight:600}
+  .nav-links a{
+    padding:9px 14px;border-radius:8px;white-space:nowrap;
+    color:var(--text);transition:all .2s ease;position:relative;
+  }
+  .nav-links a:hover{color:var(--wine-deep);background:var(--wine-soft)}
+  .nav-links a.active{color:var(--wine-deep);background:var(--wine-soft);font-weight:700}
+  .nav-links a.active::after{
+    content:"";position:absolute;left:50%;bottom:3px;
+    transform:translateX(-50%);width:16px;height:2px;
+    background:var(--gold);border-radius:2px;
+  }
+  .hamburger{
+    display:none;width:42px;height:42px;
+    border:2px solid var(--wine-soft);border-radius:10px;
+    color:var(--wine-deep);font-size:18px;
+    align-items:center;justify-content:center;
+    background:var(--wine-soft);flex-shrink:0;
+  }
 
-    /* KONTEN */
-    .konten{
-      padding:30px 0 70px;
-    }
+  .munculin{
+    opacity:0;transform:translateY(24px);
+    transition:opacity .7s ease, transform .7s ease;
+  }
+  .munculin.lihat{opacity:1;transform:translateY(0)}
 
-    /* FOTO + DESKRIPSI */
-    .baris-atas{
-      display:grid;
-      grid-template-columns:1fr 1.3fr;
-      gap:36px;
-      align-items:start;
-      margin-bottom:36px;
-    }
-    .foto-sanggar{
-      border-radius:12px;
-      overflow:hidden;
-      box-shadow:var(--shadow);
-      cursor:zoom-in;
-    }
-    .foto-sanggar img{
-      width:100%;
-      height:340px;
-      object-fit:cover;
-      display:block;
-    }
-    .deskripsi p{
-      font-size:14.5px;
-      color:var(--text);
-      line-height:1.85;
-      margin:0 0 14px;
-      text-align:justify;
-    }
-    .deskripsi p:last-child{margin-bottom:0;}
+  .judul-wrap{
+    text-align:center;
+    padding:clamp(50px,7vw,70px) 20px 30px;
+    position:relative;z-index:1;
+  }
+  .judul-wrap h1{
+    font-family:'Playfair Display',serif;
+    font-size:clamp(24px,2.8vw + 10px,40px);
+    color:var(--wine-deep);
+    margin:0 0 10px;
+    letter-spacing:-.8px;
+    line-height:1.25;
+  }
+  .judul-wrap .sub{
+    font-size:11.5px;
+    color:var(--wine-dark);
+    letter-spacing:3px;
+    text-transform:uppercase;
+    font-weight:800;
+  }
+  .judul-wrap .garis{
+    width:60px;height:2px;background:var(--gold);
+    margin:18px auto 0;border-radius:3px;
+  }
 
-    /* CARD */
-    .card{
-      background:#fff;
-      border-radius:12px;
-      padding:28px 32px;
-      box-shadow:var(--shadow);
-      margin-bottom:22px;
-    }
+  .konten{
+    padding:20px 0 clamp(60px,8vw,90px);
+    position:relative;z-index:1;
+  }
 
-    h2.label{
-      font-family:"Playfair Display",serif;
-      font-size:22px;
-      color:var(--maroon);
-      margin:0 0 16px;
-      display:flex;
-      align-items:center;
-      gap:10px;
-    }
-    h2.label::before{
-      content:"";
-      width:6px;height:20px;
-      background:var(--maroon);
-      border-radius:3px;
-      display:inline-block;
-    }
+  .baris-atas{
+    display:grid;
+    grid-template-columns:1fr 1.3fr;
+    gap:36px;
+    align-items:start;
+    margin-bottom:36px;
+  }
+  .foto-sanggar{
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:var(--shadow);
+    border:1.5px solid var(--line);
+    cursor:zoom-in;
+    transition:transform .4s var(--ease),box-shadow .4s var(--ease);
+  }
+  .foto-sanggar:hover{
+    transform:translateY(-5px);
+    box-shadow:var(--shadow-lg);
+    border-color:var(--gold);
+  }
+  .foto-sanggar img{
+    width:100%;
+    height:340px;
+    object-fit:cover;
+    display:block;
+    transition:transform .6s var(--ease);
+  }
+  .foto-sanggar:hover img{transform:scale(1.04)}
+  .deskripsi p{
+    font-size:14.5px;
+    color:var(--text);
+    line-height:1.85;
+    margin:0 0 14px;
+    text-align:justify;
+  }
+  .deskripsi p:last-child{margin-bottom:0;}
 
-    /* VISI */
-    .visi-box{
-      background:var(--maroon);
-      color:#fff;
-      border-radius:10px;
-      padding:26px 30px;
-      font-family:"Playfair Display",serif;
-      font-size:17px;
-      line-height:1.65;
-      font-style:italic;
-      text-align:center;
-    }
+  .card{
+    background:#fff;
+    border-radius:16px;
+    padding:28px 32px;
+    box-shadow:var(--shadow);
+    border:1.5px solid var(--line);
+    margin-bottom:22px;
+    transition:transform .4s var(--ease), box-shadow .4s var(--ease), border-color .3s ease;
+  }
+  .card:hover{
+    transform:translateY(-3px);
+    box-shadow:var(--shadow-lg);
+    border-color:var(--gold);
+  }
 
-    /* MISI */
-    .misi{
-      list-style:none;
-      padding:0;
-      margin:0;
-    }
-    .misi li{
-      padding:11px 0 11px 30px;
-      position:relative;
-      font-size:14.5px;
-      color:var(--ink);
-      border-bottom:1px solid var(--line);
-      text-align:justify;
-    }
-    .misi li:last-child{border-bottom:none;}
-    .misi li::before{
-      content:"•";
-      position:absolute;
-      left:10px;
-      color:var(--maroon);
-      font-size:22px;
-      line-height:1.2;
-      top:9px;
-    }
+  h2.label{
+    font-family:'Playfair Display',serif;
+    font-size:22px;
+    color:var(--wine-deep);
+    margin:0 0 18px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    letter-spacing:-.4px;
+  }
+  h2.label::before{
+    content:"";
+    width:6px;height:22px;
+    background:linear-gradient(180deg,var(--gold),var(--wine));
+    border-radius:3px;
+    display:inline-block;
+  }
 
-    /* FOTO PENGURUS (BESAR) */
-    .foto-pengurus{
-      border-radius:12px;
-      overflow:hidden;
-      box-shadow:var(--shadow);
-      margin-bottom:16px;
-      cursor:zoom-in;
-    }
-    .foto-pengurus img{
-      width:100%;
-      height:auto;
-      display:block;
-    }
+  .visi-box{
+    background:linear-gradient(135deg,var(--wine-deep) 0%,var(--wine-dark) 100%);
+    color:#fff;
+    border-radius:12px;
+    padding:28px 32px;
+    font-family:'Playfair Display',serif;
+    font-size:17px;
+    line-height:1.65;
+    font-style:italic;
+    text-align:center;
+    box-shadow:0 8px 20px rgba(107,68,35,.2);
+    position:relative;
+    overflow:hidden;
+  }
+  .visi-box::before{
+    content:"“";
+    position:absolute;
+    top:-10px;left:14px;
+    font-family:'Playfair Display',serif;
+    font-size:90px;
+    color:rgba(232,196,106,.15);
+    line-height:1;
+    pointer-events:none;
+  }
+  .visi-box p{position:relative;z-index:1;margin:0;}
 
-    /* 2 FOTO JEJER */
-    .dua-foto{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:16px;
-      margin-bottom:22px;
-    }
-    .dua-foto img{
-      width:100%;
-      height:280px;
-      object-fit:cover;
-      border-radius:10px;
-      box-shadow:var(--shadow);
-      display:block;
-      cursor:zoom-in;
-    }
+  .misi{
+    list-style:none;
+    padding:0;
+    margin:0;
+  }
+  .misi li{
+    padding:13px 0 13px 32px;
+    position:relative;
+    font-size:14.5px;
+    color:var(--text);
+    border-bottom:1px solid var(--line);
+    text-align:justify;
+    transition:padding-left .3s ease, color .3s ease;
+  }
+  .misi li:last-child{border-bottom:none;}
+  .misi li:hover{
+    padding-left:40px;
+    color:var(--wine-deep);
+  }
+  .misi li::before{
+    content:"◆";
+    position:absolute;
+    left:10px;
+    color:var(--gold);
+    font-size:12px;
+    line-height:1.8;
+    top:14px;
+    transition:left .3s ease;
+  }
+  .misi li:hover::before{left:18px;}
 
-    /* KONTAK */
-    .kontak-box{
-      background:#fff;
-      border:1px solid var(--line);
-      border-radius:10px;
-      padding:20px 24px;
-      font-size:14.5px;
-      color:var(--ink);
-      line-height:1.9;
-    }
-    .kontak-box strong{
-      color:var(--maroon);
-      display:block;
-      font-size:11px;
-      letter-spacing:2px;
-      text-transform:uppercase;
-      margin-bottom:8px;
-    }
-    .kontak-box a{color:var(--maroon);font-weight:600;}
-    .kontak-box a:hover{text-decoration:underline;}
+  .foto-pengurus{
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:var(--shadow);
+    border:1.5px solid var(--line);
+    margin-bottom:16px;
+    cursor:zoom-in;
+    transition:transform .4s var(--ease),box-shadow .4s var(--ease);
+  }
+  .foto-pengurus:hover{
+    transform:translateY(-4px);
+    box-shadow:var(--shadow-lg);
+    border-color:var(--gold);
+  }
+  .foto-pengurus img{
+    width:100%;
+    height:auto;
+    display:block;
+  }
 
-    .kembali{
-      text-align:center;
-      margin-top:38px;
-    }
-    .kembali a{
-      display:inline-block;
-      padding:11px 26px;
-      background:var(--maroon);
-      color:#fff;
-      border-radius:30px;
-      font-size:13px;
-      font-weight:600;
-      transition:background .3s;
-    }
-    .kembali a:hover{background:var(--maroon-dark);}
+  .dua-foto{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+    margin-bottom:22px;
+  }
+  .dua-foto img{
+    width:100%;
+    height:280px;
+    object-fit:cover;
+    border-radius:12px;
+    box-shadow:var(--shadow);
+    border:1.5px solid var(--line);
+    display:block;
+    cursor:zoom-in;
+    transition:transform .4s var(--ease),box-shadow .4s var(--ease);
+  }
+  .dua-foto img:hover{
+    transform:translateY(-4px);
+    box-shadow:var(--shadow-lg);
+    border-color:var(--gold);
+  }
 
-    /* LIGHTBOX */
-    .lightbox{
-      display:none;
-      position:fixed;
-      inset:0;
-      background:rgba(40,15,20,.94);
-      z-index:9999;
-      justify-content:center;
-      align-items:center;
-      padding:30px;
-      cursor:zoom-out;
-    }
-    .lightbox.show{display:flex;}
-    .lightbox img{
-      max-width:92vw;
-      max-height:88vh;
-      width:auto;
-      height:auto;
-      border-radius:8px;
-      box-shadow:0 20px 60px rgba(0,0,0,.5);
-      cursor:default;
-    }
-    .lightbox .close{
-      position:absolute;
-      top:20px;right:25px;
-      background:#fff;
-      color:#4a0f1c;
-      border:none;
-      width:42px;height:42px;
-      border-radius:50%;
-      font-size:22px;
-      font-weight:700;
-      cursor:pointer;
-      line-height:1;
-      transition:background .3s, transform .3s;
-    }
-    .lightbox .close:hover{
-      background:var(--maroon);
-      color:#fff;
-      transform:rotate(90deg);
-    }
+  .kontak-box{
+    background:#fff;
+    border:1.5px solid var(--line);
+    border-radius:12px;
+    padding:22px 26px;
+    font-size:14.5px;
+    color:var(--text);
+    line-height:1.9;
+    transition:border-color .3s ease, transform .3s var(--ease), box-shadow .3s ease;
+  }
+  .kontak-box:hover{
+    border-color:var(--gold);
+    transform:translateY(-3px);
+    box-shadow:var(--shadow);
+  }
+  .kontak-box strong{
+    color:var(--wine-deep);
+    display:block;
+    font-size:11px;
+    letter-spacing:2.5px;
+    text-transform:uppercase;
+    margin-bottom:8px;
+    font-weight:800;
+  }
+  .kontak-box a{color:var(--wine-dark);font-weight:700;transition:color .3s ease;}
+  .kontak-box a:hover{color:var(--gold);}
 
-    /* FOOTER */
-    footer{
-      background:#3f1a22; color:#fff; padding:44px 0 25px;
-    }
-    .footer-grid{
-      display:grid; grid-template-columns:1.3fr repeat(3,1fr); gap:40px;
-    }
-    footer h4{margin:0 0 14px;font-size:14px;}
-    footer p,footer a{font-size:12px;color:rgba(255,255,255,.78);margin:6px 0;}
-    footer a:hover{color:#fff;}
-    .copyright{
-      margin-top:35px;padding-top:18px;
-      border-top:1px solid rgba(255,255,255,.14);
-      font-size:11px;color:rgba(255,255,255,.62);
-      text-align:center;
-    }
+  .kembali{
+    text-align:center;
+    margin-top:40px;
+  }
+  .kembali a{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:14px 32px;
+    background:var(--wine-deep);
+    color:#fff;
+    border-radius:100px;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:.5px;
+    transition:all .3s var(--ease);
+    box-shadow:0 8px 20px rgba(107,68,35,.3);
+  }
+  .kembali a:hover{
+    background:var(--gold);
+    color:var(--wine-deep);
+    transform:translateY(-3px);
+    box-shadow:0 12px 28px rgba(217,169,58,.35);
+  }
 
-    @media(max-width:900px){
-      .nav-links{display:none}
-      .hamburger{display:block}
-      .nav-links.open{
-        display:flex;position:absolute;top:70px;left:0;right:0;
-        background:var(--maroon);padding:18px 22px 22px;
-        flex-direction:column;align-items:flex-start;gap:14px;
-      }
-      .baris-atas{grid-template-columns:1fr;gap:24px;}
-      .foto-sanggar img{height:260px;}
-      .dua-foto img{height:200px;}
-      .judul-wrap h1{font-size:22px;}
-      .card{padding:22px 22px;}
-      .footer-grid{grid-template-columns:1fr 1fr;}
+  .lightbox{
+    display:none;position:fixed;inset:0;
+    background:rgba(42,27,16,.95);z-index:9999;
+    align-items:center;justify-content:center;
+    padding:30px;cursor:zoom-out;
+  }
+  .lightbox.show{display:flex;}
+  .lightbox img{
+    max-width:94%;max-height:88vh;
+    width:auto;height:auto;
+    border-radius:8px;
+    box-shadow:0 30px 80px rgba(0,0,0,.8);
+    cursor:default;
+    border:3px solid var(--gold);
+  }
+  .lightbox .close{
+    position:absolute;top:20px;right:24px;
+    width:46px;height:46px;
+    border-radius:50%;
+    background:var(--gold);
+    color:var(--wine-deep);
+    font-size:22px;font-weight:700;
+    display:flex;align-items:center;justify-content:center;
+    transition:all .25s ease;line-height:1;
+  }
+  .lightbox .close:hover{background:var(--gold-light);transform:rotate(90deg);}
+
+  footer{
+    background:#2A1B10;
+    color:rgba(255,255,255,.85);
+    padding:clamp(40px,5vw,60px) 0 20px;
+    position:relative;z-index:1;
+  }
+  footer::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:3px;
+    background:repeating-linear-gradient(90deg,
+      var(--gold) 0 14px, var(--wine-deep) 14px 28px,
+      var(--gold-light) 28px 42px, var(--wine-dark) 42px 56px);
+  }
+  .footer-top{
+    display:grid;grid-template-columns:1fr;
+    gap:clamp(24px,3vw,40px);
+    padding-bottom:clamp(24px,3vw,36px);
+    border-bottom:1px solid rgba(232,196,106,.2);
+  }
+  @media(min-width:560px){.footer-top{grid-template-columns:1fr 1fr}}
+  @media(min-width:900px){.footer-top{grid-template-columns:1.6fr 1.2fr 1.2fr}}
+  .footer-brand{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+  .footer-brand-logo{width:28px;height:28px;object-fit:contain;flex-shrink:0;border-radius:6px}
+  .footer-brand-name{
+    font-family:'Playfair Display',serif;font-size:20px;font-weight:800;
+    color:var(--gold-light);line-height:1;
+  }
+  footer h4{
+    font-size:12px;letter-spacing:2.5px;text-transform:uppercase;
+    color:var(--gold-light);font-weight:800;margin:0 0 14px;
+  }
+  footer p,footer a{
+    font-size:13px;line-height:1.75;color:rgba(255,255,255,.8);
+    transition:color .25s ease;word-break:break-all;margin:0 0 3px;
+  }
+  footer a:hover{color:var(--gold-light)}
+  .footer-copy{
+    text-align:center;padding-top:20px;font-size:12px;
+    color:rgba(255,255,255,.55);line-height:1.6;
+  }
+  .footer-copy strong{color:var(--gold-light);font-weight:700}
+
+  @media(max-width:899px){
+    .hamburger{display:flex}
+    .nav-links{
+      display:flex;position:absolute;
+      top:var(--nav-h);left:0;right:0;background:var(--white);
+      flex-direction:column;align-items:stretch;gap:2px;
+      padding:0 16px;box-shadow:0 20px 40px rgba(107,68,35,.15);
+      border-bottom:3px solid var(--gold);
+      max-height:0;overflow:hidden;opacity:0;
+      transition:max-height .35s var(--ease), opacity .25s ease, padding .35s var(--ease);
     }
-    @media(max-width:600px){
-      .container{width:min(100% - 28px,1130px)}
-      .judul-wrap h1{font-size:19px;}
-      .dua-foto{grid-template-columns:1fr;}
-      .footer-grid{grid-template-columns:1fr;}
-    }
-  </style>
+    .nav-links.open{max-height:520px;opacity:1;padding:12px 16px 18px}
+    .nav-links a{padding:13px 14px;border-radius:8px;font-size:14px}
+    .baris-atas{grid-template-columns:1fr;gap:24px}
+  }
+  @media(max-width:600px){
+    .container{width:calc(100% - 32px)}
+    .foto-sanggar img{height:260px}
+    .dua-foto img{height:200px}
+    .judul-wrap h1{font-size:19px}
+    .card{padding:22px 20px}
+    .dua-foto{grid-template-columns:1fr}
+  }
+</style>
 </head>
 <body>
 
-  <nav class="navbar">
+  <nav class="navbar" id="navbar">
     <div class="container nav-inner">
       <a class="brand" href="index.html">
-        <img src="logo-sibaya.png" alt="Logo Sibaya">
-        SIBAYA
+        <img src="logo-sibaya.png" alt="Logo Sibaya" onerror="this.style.display='none';this.nextElementSibling.style.display='grid';">
+        <span class="brand-mark" style="display:none">SB</span>
+        <span>
+          SIBAYA
+          <span class="brand-sub">Sistem Informasi Budaya</span>
+        </span>
       </a>
       <div class="nav-links" id="navLinks">
         <a href="index.html">Beranda</a>
@@ -357,8 +473,8 @@
         <a href="cagar-budaya.html">Cagar Budaya</a>
         <a href="sanggar-binaan.html" class="active">Sanggar Binaan</a>
         <a href="mitra-kebudayaan.html">Mitra Kebudayaan</a>
-        <a href="objek-pemajuan.html">Obyek Pemajuan Kebudayaan</a>
-        <a href="pelatihan.html">Pelatihan dan Pembinaan</a>
+        <a href="objek-pemajuan.html">Objek Pemajuan</a>
+        <a href="pelatihan.html">Pelatihan &amp; Pembinaan</a>
       </div>
       <button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
     </div>
@@ -373,7 +489,6 @@
   <section class="konten">
     <div class="container">
 
-      <!-- FOTO UTAMA + DESKRIPSI -->
       <div class="baris-atas">
         <div class="foto-sanggar" onclick="bukaFoto(this.querySelector('img').src)">
           <img src="g3.jpg" alt="Seni Muda Kreatif Berbudaya">
@@ -388,15 +503,13 @@
         </div>
       </div>
 
-      <!-- VISI -->
       <div class="card">
         <h2 class="label">Visi</h2>
         <div class="visi-box">
-          Menjadi rumah bagi seluruh generasi dalam berkreatifitas, berprestasi, dan bersinergi untuk memperjuangkan kemaslahatan bersama.
+          <p>Menjadi rumah bagi seluruh generasi dalam berkreatifitas, berprestasi, dan bersinergi untuk memperjuangkan kemaslahatan bersama.</p>
         </div>
       </div>
 
-      <!-- MISI -->
       <div class="card">
         <h2 class="label">Misi</h2>
         <ul class="misi">
@@ -406,18 +519,15 @@
         </ul>
       </div>
 
-      <!-- FOTO PENGURUS (BESAR) -->
       <div class="foto-pengurus" onclick="bukaFoto(this.querySelector('img').src)">
         <img src="pengurus.jpg" alt="Pengurus Yayasan">
       </div>
 
-      <!-- 2 FOTO JEJER -->
       <div class="dua-foto">
         <img src="g1.jpg" alt="g1" onclick="bukaFoto(this.src)">
         <img src="g2.jpg" alt="g2" onclick="bukaFoto(this.src)">
       </div>
 
-      <!-- PROGRAM KEGIATAN -->
       <div class="card">
         <h2 class="label">Program Kegiatan</h2>
         <p style="font-size:14.5px;color:var(--text);line-height:1.85;margin:0;text-align:justify;">
@@ -425,7 +535,6 @@
         </p>
       </div>
 
-      <!-- KONTAK & ALAMAT -->
       <div class="kontak-box">
         <strong>Kontak & Alamat</strong>
         Perumahan Graha Indah Blok D3, RT.01 No.01, Kelurahan Graha Indah, Kecamatan Balikpapan Utara, Kota Balikpapan<br>
@@ -436,7 +545,6 @@
         Instagram &amp; FB: <a href="#">@yayasansenimukriya</a>
       </div>
 
-      <!-- KEMBALI -->
       <div class="kembali">
         <a href="sanggar-binaan.html">← Kembali ke Sanggar Binaan</a>
       </div>
@@ -445,78 +553,85 @@
   </section>
 
   <footer>
-    <div class="container footer-grid">
-      <div>
-        <h4>Kontak</h4>
-        <p>Hubungi kami untuk informasi lebih lanjut</p>
-        <p>📧 aryaqu007@gmail.com</p>
-        <p>📞 +628125416353</p>
-        <p>🌐 info@sibayabalikpapan.online</p>
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand">
+            <img src="logo-sibaya.png" alt="Logo SIBAYA" class="footer-brand-logo">
+            <div class="footer-brand-name">SIBAYA</div>
+          </div>
+          <p>Sistem Informasi Budaya Kota Balikpapan. Platform digital untuk pelestarian dan pemajuan kebudayaan daerah.</p>
+        </div>
+        <div>
+          <h4>Kontak</h4>
+          <p>ylia85151@gmail.com</p>
+          <p>+62 812 5416 353</p>
+          <p>info@sibayabalikpapan.online</p>
+        </div>
+        <div>
+          <h4>Link Terkait</h4>
+          <p><a href="https://dapobud.kemenbud.go.id" target="_blank">dapobud.kemenbud.go.id</a></p>
+          <p><a href="https://kemenbud.go.id" target="_blank">kemenbud.go.id</a></p>
+        </div>
       </div>
-      <div>
-        <h4>Email</h4>
-        <p>aryaqu007@gmail.com</p>
+      <div class="footer-copy">
+        © 2026 <strong>SIBAYA</strong> — Sistem Informasi Budaya Kota Balikpapan. Seluruh hak cipta dilindungi.
       </div>
-      <div>
-        <h4>Telepon</h4>
-        <p>+628125416353</p>
-      </div>
-      <div>
-        <h4>Link Terkait</h4>
-        <p><a href="https://dapobud.kemenbud.go.id" target="_blank">https://dapobud.kemenbud.go.id</a></p>
-      </div>
-    </div>
-    <div class="container copyright">
-      © 2026. All rights reserved. Sibaya Balikpapan.
     </div>
   </footer>
 
-  <!-- LIGHTBOX -->
   <div class="lightbox" id="lightbox" onclick="tutupFoto()">
     <button class="close" onclick="tutupFoto(event)">&times;</button>
     <img id="fotoBesar" src="" alt="Preview" onclick="event.stopPropagation()">
   </div>
 
-  <script>
-    const currentPage = window.location.pathname.split("/").pop() || "index.html";
-    document.querySelectorAll('.nav-links a').forEach(link => {
-      const href = link.getAttribute('href');
-      if (href === currentPage) link.classList.add('active');
+<script>
+  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    const href = link.getAttribute('href');
+    if (href === currentPage) link.classList.add('active');
+    else link.classList.remove('active');
+  });
+
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 40) navbar.classList.add('scrolled');
+    else navbar.classList.remove('scrolled');
+  }, { passive:true });
+
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
+  hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => navLinks.classList.remove('open'));
+  });
+
+  const items = document.querySelectorAll('.card, .baris-atas, .foto-pengurus, .dua-foto, .kontak-box, .kembali');
+  items.forEach(el => el.classList.add('munculin'));
+
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('lihat');
+        obs.unobserve(e.target);
+      }
     });
-    const hamburger = document.getElementById('hamburger');
-    const navLinks = document.getElementById('navLinks');
-    hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
-    document.querySelectorAll('.nav-links a').forEach(link => {
-      link.addEventListener('click', () => navLinks.classList.remove('open'));
-    });
+  }, { threshold: 0.12 });
+  items.forEach(el => obs.observe(el));
 
-    const items = document.querySelectorAll('.card, .baris-atas, .foto-pengurus, .dua-foto, .kontak-box, .kembali');
-    items.forEach(el => el.classList.add('munculin'));
-
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('lihat');
-          obs.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.12 });
-
-    items.forEach(el => obs.observe(el));
-
-    function bukaFoto(src){
-      document.getElementById('fotoBesar').src = src;
-      document.getElementById('lightbox').classList.add('show');
-      document.body.style.overflow = 'hidden';
-    }
-    function tutupFoto(e){
-      if (e) e.stopPropagation();
-      document.getElementById('lightbox').classList.remove('show');
-      document.body.style.overflow = '';
-    }
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') tutupFoto();
-    });
-  </script>
+  function bukaFoto(src){
+    document.getElementById('fotoBesar').src = src;
+    document.getElementById('lightbox').classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }
+  function tutupFoto(e){
+    if (e) e.stopPropagation();
+    document.getElementById('lightbox').classList.remove('show');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') tutupFoto();
+  });
+</script>
 </body>
 </html>

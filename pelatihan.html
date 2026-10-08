@@ -1,38 +1,35 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="no-js">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <meta name="referrer" content="strict-origin-when-cross-origin" />
 <title>Pelatihan &amp; Pembinaan — SIBAYA Kota Balikpapan</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,500;1,700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --wine:#7a1425;
-    --wine-dark:#4a0812;
-    --wine-deep:#320510;
-    --wine-light:#9c2a3d;
-    --wine-soft:#f6e8eb;
-    --gold:#c9a24a;
-    --ink:#2a161c;
-    --text:#6d5a60;
-    --muted:#a69a9e;
-    --line:#ece0e3;
-    --bg:#fdfbfb;
-    --white:#fff;
-    --shadow-sm:0 4px 14px rgba(74,8,18,.06);
-    --shadow:0 14px 40px rgba(74,8,18,.10);
-    --shadow-lg:0 28px 70px rgba(74,8,18,.16);
-    --ease:cubic-bezier(.25,.8,.25,1);
+    --wine:#A6785A;
+    --wine-dark:#8B5E3C;
+    --wine-deep:#6B4423;
+    --wine-soft:#F5EFE8;
+    --gold:#D9A93A;
+    --gold-light:#E8C46A;
+    --ink:#2E1D12;
+    --text:#4A3628;
+    --line:#E6D5C0;
+    --white:#FFFFFF;
+    --shadow:0 10px 30px rgba(107,68,35,.12);
+    --ease:cubic-bezier(.22,1,.36,1);
+    --nav-h:clamp(60px,8vw,72px);
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
   body{
-    font-family:'Inter',system-ui,Arial,sans-serif;
+    font-family:'Inter',system-ui,sans-serif;
     color:var(--ink);
-    background:var(--white);
+    background:#FFFFFF;
     line-height:1.65;
     overflow-x:hidden;
     -webkit-font-smoothing:antialiased;
@@ -40,107 +37,157 @@
   }
   body::before{
     content:"";
-    position:fixed;inset:0;
+    position:fixed;
+    inset:0;
     background-image:url('batik.png');
     background-repeat:repeat;
-    background-size:340px;
+    background-size:clamp(240px,30vw,360px);
     opacity:.06;
+    pointer-events:none;
+    z-index:0;
+    filter:sepia(.4) saturate(.9);
+  }
+  body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:rgba(255,255,255,.55);
     pointer-events:none;
     z-index:0;
   }
   img{display:block;width:100%;height:auto}
   a{text-decoration:none;color:inherit}
   button{font-family:inherit;cursor:pointer;border:0;background:none}
-  .container{width:min(1180px,calc(100% - 48px));margin:auto;position:relative;z-index:1}
-  ::selection{background:var(--wine);color:#fff}
 
-  /* PROGRESS BAR */
+  /* ============================================================
+     CONTAINER & ARTICLE — FULL KIRI-KANAN
+     ============================================================ */
+  .container{
+    width:100%;
+    max-width:100%;
+    margin:0 auto;
+    padding-left:clamp(20px,4vw,64px);
+    padding-right:clamp(20px,4vw,64px);
+    position:relative;
+    z-index:1;
+  }
+  .article{
+    width:100%;
+    max-width:100%;
+    margin:0;
+  }
+
+  ::selection{background:var(--wine-deep);color:var(--gold-light)}
+
+  ::-webkit-scrollbar{width:10px;height:10px}
+  ::-webkit-scrollbar-track{background:#F5F5F5}
+  ::-webkit-scrollbar-thumb{background:var(--wine-deep);border-radius:10px;border:2px solid #F5F5F5}
+  ::-webkit-scrollbar-thumb:hover{background:var(--wine-dark)}
+
   .progress-bar{
     position:fixed;top:0;left:0;
     height:3px;width:0%;
-    background:linear-gradient(90deg,var(--wine),var(--gold));
+    background:linear-gradient(90deg,var(--gold),var(--gold-light));
     z-index:9999;
-    transition:width .15s ease;
+    transition:width .1s linear;
   }
 
-  /* NAVBAR */
+  .topbar{
+    background:var(--wine-deep);
+    color:var(--gold-light);
+    font-size:11.5px;
+    height:38px;
+    display:flex;align-items:center;justify-content:center;
+    letter-spacing:.08em;
+    font-weight:600;
+    padding:0 16px;
+    text-align:center;
+    border-bottom:2px solid var(--gold);
+    position:relative;
+    z-index:2;
+  }
+
   .navbar{
     position:sticky;top:0;z-index:100;
-    background:var(--wine);
-    color:#fff;
-    transition:all .4s var(--ease);
-    box-shadow:0 2px 10px rgba(0,0,0,.08);
+    background:rgba(255,255,255,.96);
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+    transition:box-shadow .3s ease;
+    border-bottom:2px solid var(--wine-soft);
   }
-  .navbar.scrolled{
-    box-shadow:0 8px 26px rgba(74,8,18,.22);
-    background:rgba(122,20,37,.97);
-    backdrop-filter:saturate(180%) blur(8px);
-  }
+  .navbar.scrolled{box-shadow:0 6px 20px rgba(107,68,35,.08)}
   .nav-inner{
-    min-height:74px;
+    min-height:var(--nav-h);
     display:flex;align-items:center;justify-content:space-between;
-    gap:28px;
+    gap:20px;
   }
   .brand{
-    display:flex;align-items:center;gap:12px;
+    display:flex;align-items:center;gap:10px;
     font-family:'Playfair Display',serif;
-    font-size:22px;font-weight:700;letter-spacing:.5px;
+    font-size:20px;font-weight:800;
+    color:var(--wine-deep);
+    min-width:0;
   }
   .brand-mark{
-    width:42px;height:42px;border-radius:10px;
-    background:linear-gradient(135deg,#c9a24a,#e7c773);
-    color:var(--wine-deep);
+    width:40px;height:40px;
+    border-radius:10px;
+    background:var(--wine-deep);
+    color:var(--gold-light);
     display:grid;place-items:center;
     font-family:'Playfair Display',serif;
-    font-weight:800;font-size:17px;
-    box-shadow:0 6px 16px rgba(0,0,0,.15);
+    font-weight:800;font-size:16px;
+    flex-shrink:0;
   }
-  .brand img{height:42px;width:auto;border-radius:8px}
+  .brand img{
+    height:40px;width:40px;object-fit:contain;
+    border-radius:8px;flex-shrink:0;
+  }
   .brand-sub{
     display:block;
     font-family:'Inter',sans-serif;
-    font-size:9.5px;font-weight:500;
-    letter-spacing:2.5px;
-    color:rgba(255,255,255,.7);
-    margin-top:-2px;
+    font-size:9px;font-weight:600;
+    letter-spacing:2px;
+    color:var(--wine);
+    margin-top:-1px;
+    text-transform:uppercase;
   }
   .nav-links{
-    display:flex;align-items:center;gap:6px;
-    font-size:12.5px;font-weight:500;
+    display:flex;align-items:center;gap:2px;
+    font-size:13px;font-weight:600;
   }
   .nav-links a{
     padding:9px 14px;border-radius:8px;
     white-space:nowrap;
-    color:rgba(255,255,255,.88);
-    transition:all .25s ease;position:relative;
+    color:var(--text);
+    transition:all .2s ease;
+    position:relative;
   }
-  .nav-links a:hover{color:#fff;background:rgba(255,255,255,.1)}
-  .nav-links a.active{color:#fff;background:rgba(255,255,255,.16)}
+  .nav-links a:hover{color:var(--wine-deep);background:var(--wine-soft)}
+  .nav-links a.active{color:var(--wine-deep);background:var(--wine-soft);font-weight:700}
   .nav-links a.active::after{
     content:"";position:absolute;
-    left:50%;bottom:2px;transform:translateX(-50%);
-    width:18px;height:2px;
+    left:50%;bottom:3px;transform:translateX(-50%);
+    width:16px;height:2px;
     background:var(--gold);border-radius:2px;
   }
   .hamburger{
-    display:none;width:44px;height:44px;
-    border:1px solid rgba(255,255,255,.28);
-    border-radius:10px;color:#fff;
-    font-size:20px;
+    display:none;
+    width:42px;height:42px;
+    border:2px solid var(--wine-soft);
+    border-radius:10px;
+    color:var(--wine-deep);
+    font-size:18px;
     align-items:center;justify-content:center;
+    background:var(--wine-soft);
+    flex-shrink:0;
   }
 
-  /* REVEAL — SMOOTH */
-  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease);will-change:opacity,transform}
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
   .reveal.active{opacity:1;transform:translateY(0)}
-  .reveal-left{opacity:0;transform:translateX(-32px);transition:opacity .7s var(--ease),transform .7s var(--ease);will-change:opacity,transform}
-  .reveal-left.active{opacity:1;transform:translateX(0)}
-  .reveal-right{opacity:0;transform:translateX(32px);transition:opacity .7s var(--ease),transform .7s var(--ease);will-change:opacity,transform}
-  .reveal-right.active{opacity:1;transform:translateX(0)}
-  .reveal-zoom{opacity:0;transform:scale(.96);transition:opacity .7s var(--ease),transform .7s var(--ease);will-change:opacity,transform}
-  .reveal-zoom.active{opacity:1;transform:scale(1)}
-  .reveal-img{opacity:0;transform:translateY(20px);transition:opacity .6s var(--ease),transform .6s var(--ease);will-change:opacity,transform}
+  .reveal-img{opacity:0;transform:translateY(20px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
   .reveal-img.active{opacity:1;transform:translateY(0)}
+  .reveal-zoom{opacity:0;transform:scale(.96);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+  .reveal-zoom.active{opacity:1;transform:scale(1)}
   .delay-1{transition-delay:.06s}
   .delay-2{transition-delay:.12s}
   .delay-3{transition-delay:.18s}
@@ -150,348 +197,500 @@
   .delay-7{transition-delay:.42s}
   .delay-8{transition-delay:.48s}
 
-  /* SECTION */
-  section{padding:70px 0 90px;position:relative}
-  .pelatihan-section{background:transparent}
+  html.no-js .reveal,
+  html.no-js .reveal-img,
+  html.no-js .reveal-zoom{opacity:1 !important;transform:none !important}
+  @media (prefers-reduced-motion: reduce){
+    .reveal, .reveal-img, .reveal-zoom{opacity:1 !important;transform:none !important}
+  }
 
-  /* BOX */
-  .box{
-    background:#fff;
-    border-radius:20px;
-    padding:45px 50px;
-    box-shadow:var(--shadow-sm);
-    margin-bottom:30px;
-    border:1px solid var(--line);
-    transition:box-shadow .4s var(--ease);
+  section{
+    padding:clamp(50px,7vw,80px) 0 clamp(64px,9vw,100px);
     position:relative;
     z-index:1;
   }
-  .box:hover{box-shadow:var(--shadow)}
 
-  /* PAGE TITLE */
-  .page-title{
-    font-family:'Playfair Display',serif;
-    font-size:clamp(28px,4vw,44px);
-    font-weight:700;
-    color:var(--wine-deep);
-    margin:0 0 30px;
-    letter-spacing:-1px;
-    line-height:1.15;
-  }
-  .page-title em{font-style:italic;color:var(--wine);font-weight:500}
-
-  /* INTRO 2 KOL */
-  .intro-2col{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:50px;
-  }
-  .intro-2col h3{
-    font-family:'Playfair Display',serif;
-    font-size:22px;
-    font-weight:700;
+  .article-eyebrow{
+    display:inline-block;
+    font-size:11px;
+    letter-spacing:3.5px;
+    text-transform:uppercase;
     color:var(--wine-dark);
-    margin:0 0 14px;
-    line-height:1.3;
+    font-weight:800;
+    margin-bottom:14px;
+    position:relative;
+    padding-left:36px;
   }
-  .intro-2col p{
-    font-size:15px;
+  .article-eyebrow::before{
+    content:"";
+    position:absolute;
+    left:0;top:50%;
+    transform:translateY(-50%);
+    width:24px;height:2px;
+    background:var(--gold);
+    border-radius:2px;
+  }
+
+  .article-title{
+    font-family:'Playfair Display',serif;
+    font-size:clamp(30px,4vw + 8px,52px);
+    font-weight:800;
+    color:var(--wine-deep);
+    line-height:1.12;
+    letter-spacing:-1.2px;
+    margin:0 0 24px;
+  }
+  .article-title em{
+    font-style:italic;
+    font-weight:500;
+    color:var(--wine-dark);
+  }
+
+  .lead{
+    font-size:clamp(16px,1.7vw,18px);
+    color:var(--text);
+    line-height:1.8;
+    margin:0 0 26px;
+    font-weight:400;
+  }
+
+  .article p{
+    font-size:clamp(15px,1.6vw,17px);
     color:var(--text);
     line-height:1.85;
-    margin:0;
+    margin:0 0 22px;
     text-align:justify;
+    hyphens:auto;
+    word-wrap:break-word;
+    overflow-wrap:break-word;
   }
+  .article p:last-child{margin-bottom:0}
+  .article p strong{color:var(--wine-deep);font-weight:700}
+  .article p em{font-style:italic;color:var(--wine-dark)}
 
-  /* WORKSHOP TITLE */
-  .workshop-title{
+  .drop-cap::first-letter{
     font-family:'Playfair Display',serif;
-    font-size:clamp(24px,3vw,32px);
-    font-weight:700;
+    font-size:clamp(56px,7vw,80px);
+    font-weight:800;
     color:var(--wine-deep);
-    margin:0 0 10px;
-    letter-spacing:-.5px;
-    line-height:1.2;
-  }
-  .workshop-date{
-    font-size:14px;
-    color:var(--text);
-    font-weight:500;
-    margin:0 0 26px;
-    padding-bottom:20px;
-    border-bottom:1px solid var(--line);
-    letter-spacing:.3px;
+    float:left;
+    line-height:.85;
+    margin:6px 14px 0 0;
   }
 
-  /* CONTENT 2 COL */
-  .content-2col{
+  .article-divider{
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:16px;
+    margin:clamp(50px,7vw,80px) 0;
+    color:var(--gold);
+  }
+  .article-divider::before,
+  .article-divider::after{
+    content:"";
+    flex:1;
+    max-width:120px;
+    height:1px;
+    background:linear-gradient(90deg,transparent,var(--line),transparent);
+  }
+  .article-divider span{
+    font-family:'Playfair Display',serif;
+    font-size:18px;
+    color:var(--gold);
+    font-weight:700;
+  }
+
+  .pull-quote{
+    border-left:4px solid var(--gold);
+    padding:8px 0 8px 28px;
+    margin:32px 0;
+    font-family:'Playfair Display',serif;
+    font-style:italic;
+    font-size:clamp(19px,2.2vw,24px);
+    line-height:1.5;
+    color:var(--wine-deep);
+    font-weight:500;
+    position:relative;
+  }
+  .pull-quote::before{
+    content:"\201C";
+    position:absolute;
+    left:8px;top:-18px;
+    font-family:'Playfair Display',serif;
+    font-size:80px;
+    color:var(--gold);
+    opacity:.35;
+    line-height:1;
+  }
+
+  .section-title{
+    font-family:'Playfair Display',serif;
+    font-size:clamp(24px,3vw + 6px,38px);
+    font-weight:800;
+    color:var(--wine-deep);
+    line-height:1.2;
+    letter-spacing:-.8px;
+    margin:0 0 24px;
+    padding-left:24px;
+    position:relative;
+  }
+  .section-title::before{
+    content:"";
+    position:absolute;
+    left:0;top:10%;
+    bottom:10%;
+    width:5px;
+    background:linear-gradient(180deg,var(--gold),var(--wine));
+    border-radius:5px;
+  }
+
+  .workshop-meta{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:13.5px;
+    color:var(--text);
+    font-weight:600;
+    margin:0 0 28px;
+    padding:12px 0;
+    border-top:1.5px solid var(--line);
+    border-bottom:1.5px solid var(--line);
+    letter-spacing:.3px;
+    flex-wrap:wrap;
+  }
+  .workshop-meta::before{
+    content:"◆";
+    color:var(--gold);
+    font-size:10px;
+  }
+
+  .article-figure{
+  margin:32px auto;
+  cursor:zoom-in;
+  max-width:900px;
+  width:100%;
+}
+  .article-figure img{
+    width:100%;
+    border-radius:10px;
+    display:block;
+    transition:transform .5s var(--ease);
+  }
+  .article-figure:hover img{transform:scale(1.01)}
+  .article-figure figcaption{
+    font-size:13px;
+    color:var(--text);
+    line-height:1.6;
+    margin-top:12px;
+    padding-left:16px;
+    border-left:3px solid var(--gold);
+    font-style:italic;
+  }
+
+  .figure-grid-2{
     display:grid;
     grid-template-columns:1fr 1fr;
-    gap:45px;
-    align-items:start;
+    gap:16px;
+    margin:32px 0;
   }
-  .content-2col .text-side p{
-    font-size:14.5px;
-    color:var(--text);
-    line-height:1.85;
-    margin:0 0 14px;
-    text-align:justify;
-  }
-  .content-2col .text-side p:last-child{margin-bottom:0}
+  .figure-grid-2 .article-figure{margin:0}
 
-  /* VIDEO */
-  .video-wrapper{
-    width:100%;
-    aspect-ratio:16/9;
-    border-radius:14px;
-    overflow:hidden;
-    box-shadow:var(--shadow);
-    background:#000;
-    border:1px solid var(--line);
+  .gallery-8{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+    margin:32px 0;
   }
+  .gallery-8 img{
+    width:100%;
+    aspect-ratio:1/1;
+    object-fit:cover;
+    border-radius:10px;
+    cursor:zoom-in;
+    transition:transform .4s var(--ease),box-shadow .4s var(--ease);
+    background:#faf7f8;
+    border:1.5px solid var(--line);
+  }
+  .gallery-8 img:hover{
+    transform:translateY(-3px) scale(1.02);
+    box-shadow:var(--shadow);
+    border-color:var(--gold);
+  }
+
+ .video-wrapper{
+  width:100%;
+  max-width:900px;
+  aspect-ratio:16/9;
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+  background:#000;
+  border:1.5px solid var(--line);
+  margin:32px auto;
+}
   .video-wrapper iframe{
     width:100%;height:100%;
     border:0;display:block;
   }
 
-  /* GALERI 3 */
-  .galeri-3col{
+  .two-col-info{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:14px;
-    margin-top:26px;
+    grid-template-columns:1fr;
+    gap:22px;
+    margin:32px 0;
   }
-  .galeri-3col img{
-    width:100%;
-    aspect-ratio:4/3;
-    object-fit:cover;
-    border-radius:12px;
-    cursor:zoom-in;
-    transition:transform .4s var(--ease),box-shadow .4s var(--ease);
-    background:#faf7f8;
-    box-shadow:var(--shadow-sm);
-    border:1px solid var(--line);
+  @media(min-width:640px){
+    .two-col-info{grid-template-columns:1fr 1fr;gap:24px}
   }
-  .galeri-3col img:hover{
-    transform:translateY(-3px) scale(1.01);
-    box-shadow:var(--shadow);
+  .two-col-info .info-block{
+    padding-left:22px;
+    border-left:3px solid var(--gold);
+  }
+  .two-col-info .info-block h4{
+    font-family:'Playfair Display',serif;
+    font-size:clamp(17px,1.8vw,20px);
+    font-weight:700;
+    color:var(--wine-deep);
+    margin:0 0 10px;
+    line-height:1.3;
+  }
+  .two-col-info .info-block p{
+    font-size:clamp(14px,1.5vw,15.5px);
+    color:var(--text);
+    line-height:1.8;
+    margin:0;
+    text-align:justify;
   }
 
-  /* GALERI 8 */
-  .galeri-8{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:12px;
-    margin-top:26px;
-  }
-  .galeri-8 img{
-    width:100%;
-    aspect-ratio:4/3;
-    object-fit:cover;
-    border-radius:12px;
-    cursor:zoom-in;
-    transition:transform .4s var(--ease),box-shadow .4s var(--ease);
-    background:#faf7f8;
-    box-shadow:var(--shadow-sm);
-    border:1px solid var(--line);
-  }
-  .galeri-8 img:hover{
-    transform:translateY(-3px) scale(1.01);
-    box-shadow:var(--shadow);
+  .end-mark{
+    text-align:center;
+    margin:60px 0 20px;
+    font-family:'Playfair Display',serif;
+    font-size:22px;
+    color:var(--gold);
+    letter-spacing:8px;
   }
 
   .copyright-mark{
-    font-size:12.5px;
+    text-align:center;
+    font-size:13px;
     color:var(--text);
     font-weight:500;
-    margin-top:35px;
-    padding-top:22px;
-    border-top:1px solid var(--line);
-    letter-spacing:.5px;
-    text-align:center;
+    margin-top:30px;
+    padding-top:24px;
+    border-top:1.5px solid var(--line);
+    letter-spacing:.4px;
+    font-style:italic;
   }
 
-  /* FOOTER */
   footer{
-    background:#1a050a;
-    color:rgba(255,255,255,.75);
-    padding:70px 0 30px;
+    background:#2A1B10;
+    color:rgba(255,255,255,.85);
+    padding:clamp(40px,5vw,60px) 0 20px;
     position:relative;
+    z-index:1;
+  }
+  footer::before{
+    content:"";position:absolute;top:0;left:0;right:0;
+    height:3px;
+    background:repeating-linear-gradient(90deg,
+      var(--gold) 0 14px, var(--wine-deep) 14px 28px,
+      var(--gold-light) 28px 42px, var(--wine-dark) 42px 56px);
   }
   .footer-top{
     display:grid;
-    grid-template-columns:1.6fr 1fr 1fr 1.2fr;
-    gap:50px;
-    padding-bottom:50px;
-    border-bottom:1px solid rgba(255,255,255,.08);
+    grid-template-columns:1fr;
+    gap:clamp(24px,3vw,40px);
+    padding-bottom:clamp(24px,3vw,36px);
+    border-bottom:1px solid rgba(232,196,106,.2);
   }
-  .footer-brand{
-    display:flex;align-items:center;gap:12px;
-    margin-bottom:20px;
+  @media(min-width:560px){
+    .footer-top{grid-template-columns:1fr 1fr}
   }
-  .footer-brand-mark{
-    width:42px;height:42px;
-    border-radius:10px;
-    background:linear-gradient(135deg,#c9a24a,#e7c773);
-    color:var(--wine-deep);
-    display:grid;place-items:center;
-    font-family:'Playfair Display',serif;
-    font-weight:800;font-size:17px;
+  @media(min-width:900px){
+    .footer-top{grid-template-columns:1.6fr 1.2fr 1.2fr}
+  }
+  .footer-brand{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+  .footer-brand-logo{
+    width:28px;height:28px;
+    object-fit:contain;flex-shrink:0;
+    border-radius:6px;
   }
   .footer-brand-name{
     font-family:'Playfair Display',serif;
-    font-size:20px;font-weight:700;color:#fff;
+    font-size:20px;font-weight:800;
+    color:var(--gold-light);line-height:1;
   }
   footer h4{
     font-size:12px;
     letter-spacing:2.5px;
     text-transform:uppercase;
-    color:var(--gold);
-    font-weight:600;
-    margin:0 0 20px;
+    color:var(--gold-light);
+    font-weight:800;
+    margin:0 0 14px;
   }
   footer p,footer a{
     font-size:13px;
-    line-height:1.9;
-    color:rgba(255,255,255,.7);
+    line-height:1.75;
+    color:rgba(255,255,255,.8);
     transition:color .25s ease;
+    word-break:break-all;
+    margin:0 0 3px;
   }
-  footer a:hover{color:var(--gold)}
+  footer a:hover{color:var(--gold-light)}
   .footer-copy{
-    text-align:center;padding-top:30px;
+    text-align:center;
+    padding-top:20px;
     font-size:12px;
-    color:rgba(255,255,255,.4);
-    letter-spacing:.5px;
+    color:rgba(255,255,255,.55);
+    line-height:1.6;
   }
+  .footer-copy strong{color:var(--gold-light);font-weight:700}
 
-  /* TO-TOP */
   .to-top{
-    position:fixed;
-    right:26px;bottom:26px;
+    position:fixed;right:20px;bottom:20px;
     width:46px;height:46px;
     border-radius:50%;
-    background:var(--wine);
+    background:var(--wine-deep);
     color:#fff;
     display:grid;place-items:center;
     z-index:200;
     opacity:0;visibility:hidden;
-    transform:translateY(20px);
-    transition:all .4s var(--ease);
-    box-shadow:0 12px 26px rgba(74,8,18,.35);
-    font-size:18px;
+    transform:translateY(15px);
+    transition:all .35s var(--ease);
+    font-size:18px;font-weight:700;
+    box-shadow:0 6px 20px rgba(107,68,35,.35);
+    border:2px solid var(--gold);
   }
   .to-top.visible{opacity:1;visibility:visible;transform:translateY(0)}
-  .to-top:hover{
-    background:var(--gold);
-    color:var(--wine-deep);
-    transform:translateY(-4px);
-    box-shadow:0 18px 34px rgba(201,162,74,.4);
+  .to-top:hover{background:var(--gold);color:var(--wine-deep);transform:translateY(-3px)}
+
+  .music-btn{
+    position:fixed;
+    left:20px;bottom:20px;
+    width:46px;height:46px;
+    border-radius:50%;
+    background:var(--wine-deep);
+    color:var(--gold-light);
+    display:grid;place-items:center;
+    z-index:200;
+    font-size:18px;
+    box-shadow:0 6px 20px rgba(107,68,35,.35);
+    border:2px solid var(--gold);
+    transition:all .35s var(--ease);
+    cursor:pointer;
+  }
+  .music-btn:hover{background:var(--gold);color:var(--wine-deep);transform:translateY(-3px) scale(1.05)}
+  .music-btn.muted{opacity:.7}
+  .music-btn.muted::after{
+    content:"";
+    position:absolute;
+    width:26px;height:2px;
+    background:var(--gold-light);
+    transform:rotate(-45deg);
+    border-radius:2px;
+    pointer-events:none;
+  }
+  .music-btn.muted:hover::after{background:var(--wine-deep)}
+  @media(max-width:480px){
+    .music-btn{width:42px;height:42px;font-size:16px;left:16px;bottom:16px}
   }
 
-  /* LIGHTBOX */
   .lightbox{
     display:none;
     position:fixed;inset:0;
-    background:rgba(26,5,10,.96);
+    background:rgba(42,27,16,.95);
     z-index:9999;
     align-items:center;justify-content:center;
-    padding:40px;
+    padding:24px;
     cursor:zoom-out;
-    animation:fadeIn .3s ease;
+    animation:fadeIn .25s ease;
   }
   .lightbox.show{display:flex}
   @keyframes fadeIn{from{opacity:0}to{opacity:1}}
   .lightbox img{
     max-width:94%;max-height:88vh;
     width:auto;height:auto;
-    border-radius:10px;
-    box-shadow:0 30px 80px rgba(0,0,0,.6);
-    animation:zoomIn .35s var(--ease);
+    border-radius:8px;
+    box-shadow:0 30px 80px rgba(0,0,0,.8);
     cursor:default;
+    border:3px solid var(--gold);
   }
-  @keyframes zoomIn{from{transform:scale(.9);opacity:0}to{transform:scale(1);opacity:1}}
   .lightbox .close-btn{
     position:absolute;
-    top:24px;right:28px;
-    width:48px;height:48px;
+    top:20px;right:24px;
+    width:46px;height:46px;
     border-radius:50%;
-    background:#fff;
+    background:var(--gold);
     color:var(--wine-deep);
-    font-size:24px;font-weight:700;
+    font-size:22px;font-weight:700;
     display:flex;align-items:center;justify-content:center;
-    transition:all .3s ease;
+    transition:all .25s ease;
     line-height:1;
   }
-  .lightbox .close-btn:hover{
-    background:var(--gold);
-    transform:rotate(90deg) scale(1.05);
-  }
+  .lightbox .close-btn:hover{background:var(--gold-light);transform:rotate(90deg)}
   .lightbox .nav-btn{
     position:absolute;
     top:50%;
     transform:translateY(-50%);
-    width:48px;height:48px;
+    width:46px;height:46px;
     border-radius:50%;
-    background:rgba(255,255,255,.9);
+    background:rgba(255,255,255,.92);
     color:var(--wine-deep);
-    font-size:22px;font-weight:700;
+    font-size:20px;font-weight:700;
     display:flex;align-items:center;justify-content:center;
-    transition:all .3s ease;
+    transition:all .25s ease;
     z-index:10001;
   }
-  .lightbox .nav-btn:hover{
-    background:var(--gold);
-    transform:translateY(-50%) scale(1.1);
-  }
-  .lightbox .nav-btn.prev{left:25px}
-  .lightbox .nav-btn.next{right:25px}
+  .lightbox .nav-btn:hover{background:var(--gold);transform:translateY(-50%) scale(1.08)}
+  .lightbox .nav-btn.prev{left:20px}
+  .lightbox .nav-btn.next{right:20px}
 
-  /* RESPONSIVE */
-  @media(max-width:1024px){
-    .footer-top{grid-template-columns:1fr 1fr;gap:40px}
-    .intro-2col{grid-template-columns:1fr;gap:30px}
-    .content-2col{grid-template-columns:1fr;gap:30px}
-    .galeri-8{grid-template-columns:repeat(3,1fr)}
-  }
-  @media(max-width:900px){
-    .nav-links{display:none}
+  @media(max-width:899px){
     .hamburger{display:flex}
-    .nav-links.open{
-      display:flex;position:absolute;
-      top:74px;left:0;right:0;
-      background:var(--wine-deep);
-      flex-direction:column;align-items:stretch;gap:0;
-      padding:14px 20px 22px;
-      box-shadow:0 20px 40px rgba(0,0,0,.3);
+    .nav-links{
+      display:flex;
+      position:absolute;
+      top:var(--nav-h);left:0;right:0;
+      background:var(--white);
+      flex-direction:column;
+      align-items:stretch;
+      gap:2px;
+      padding:0 16px;
+      box-shadow:0 20px 40px rgba(107,68,35,.15);
+      border-bottom:3px solid var(--gold);
+      max-height:0;
+      overflow:hidden;
+      opacity:0;
+      transition:max-height .35s var(--ease), opacity .25s ease, padding .35s var(--ease);
     }
-    .nav-links.open a{padding:14px 12px;border-radius:8px}
-    .box{padding:32px 28px}
-    .galeri-3col{grid-template-columns:repeat(2,1fr)}
-    .galeri-8{grid-template-columns:repeat(2,1fr)}
-    section{padding:60px 0 80px}
+    .nav-links.open{max-height:520px;opacity:1;padding:12px 16px 18px}
+    .nav-links a{padding:13px 14px;border-radius:8px;font-size:14px}
   }
-  @media(max-width:600px){
-    .container{width:min(100% - 32px,1180px)}
-    .brand{font-size:18px}
-    .brand-mark{width:38px;height:38px;font-size:15px}
-    .nav-inner{min-height:64px}
-    .nav-links.open{top:64px}
-    .box{padding:26px 22px}
-    .galeri-3col{grid-template-columns:1fr}
-    .galeri-8{grid-template-columns:repeat(2,1fr)}
-    .footer-top{grid-template-columns:1fr;gap:34px}
-    .lightbox{padding:16px}
-    .lightbox .nav-btn{width:40px;height:40px;font-size:18px}
-    .lightbox .nav-btn.prev{left:12px}
-    .lightbox .nav-btn.next{right:12px}
+
+  @media(max-width:640px){
+    .figure-grid-2{grid-template-columns:1fr;gap:20px}
+    .gallery-8{grid-template-columns:repeat(2,1fr);gap:10px}
+    .two-col-info{grid-template-columns:1fr}
+    .article p{text-align:left}
+    .two-col-info .info-block p{text-align:left}
+  }
+
+  @media(max-width:480px){
+    .lightbox{padding:12px}
+    .lightbox .close-btn{width:40px;height:40px;font-size:20px;top:12px;right:12px}
+    .lightbox .nav-btn{width:38px;height:38px;font-size:16px}
+    .lightbox .nav-btn.prev{left:8px}
+    .lightbox .nav-btn.next{right:8px}
   }
 </style>
 </head>
 <body>
 
-  <!-- PROGRESS BAR -->
   <div class="progress-bar" id="progressBar"></div>
 
-  <!-- NAVBAR -->
   <nav class="navbar" id="navbar">
     <div class="container nav-inner">
       <a class="brand" href="index.html">
@@ -499,7 +698,7 @@
         <span class="brand-mark" style="display:none">SB</span>
         <span>
           SIBAYA
-          <span class="brand-sub">SISTEM INFORMASI BUDAYA</span>
+          <span class="brand-sub">Sistem Informasi Budaya</span>
         </span>
       </a>
       <div class="nav-links" id="navLinks">
@@ -508,75 +707,90 @@
         <a href="cagar-budaya.html">Cagar Budaya</a>
         <a href="sanggar-binaan.html">Sanggar Binaan</a>
         <a href="mitra-kebudayaan.html">Mitra Kebudayaan</a>
-        <a href="objek-pemajuan.html">Obyek Pemajuan</a>
-        <a href="pelatihan.html">Pelatihan &amp; Pembinaan</a>
+        <a href="objek-pemajuan.html">Objek Pemajuan</a>
+        <a href="pelatihan.html" class="active">Pelatihan &amp; Pembinaan</a>
       </div>
       <button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
     </div>
   </nav>
 
-  <!-- SECTION UTAMA -->
   <section class="pelatihan-section">
     <div class="container">
+      <article class="article">
 
-      <!-- KOTAK 1: JUDUL + INTRO -->
-      <div class="box reveal">
-        <h1 class="page-title">Pelatihan &amp; <em>Pembinaan</em></h1>
+        <span class="article-eyebrow reveal">Program</span>
+        <h1 class="article-title reveal">Pelatihan &amp; <em>Pembinaan</em></h1>
 
-        <div class="intro-2col">
-          <div class="reveal-left delay-1">
-            <h3>Pelatihan</h3>
+        <p class="lead reveal">
+          Dinas Pendidikan dan Kebudayaan Kota Balikpapan secara berkelanjutan menyelenggarakan program pelatihan dan pembinaan kebudayaan sebagai upaya memperkuat kapasitas pelaku seni, komunitas budaya, dan masyarakat dalam menjaga warisan budaya daerah.
+        </p>
+
+        <div class="two-col-info reveal">
+          <div class="info-block">
+            <h4>Pelatihan</h4>
             <p>
               Berisi informasi kegiatan peningkatan pengetahuan, keterampilan, dan kompetensi di bidang kebudayaan. Melalui pelatihan ini, masyarakat, pelaku seni, komunitas budaya, dan generasi muda dapat mengembangkan kemampuan dalam seni tradisi, pengelolaan budaya, hingga pemanfaatan teknologi untuk pelestarian kebudayaan daerah.
             </p>
           </div>
-          <div class="reveal-right delay-2">
-            <h3>Pembinaan</h3>
+          <div class="info-block">
+            <h4>Pembinaan</h4>
             <p>
               Berisi program pendampingan dan penguatan kapasitas bagi sanggar, komunitas seni, pelaku budaya, serta masyarakat dalam menjaga dan mengembangkan kebudayaan daerah. Kegiatan pembinaan dilakukan secara berkelanjutan untuk mendukung pelestarian, pengembangan, dan pemanfaatan budaya sebagai identitas dan kekayaan daerah.
             </p>
           </div>
         </div>
-      </div>
 
-      <!-- KOTAK 2: WORKSHOP MEMBATIK -->
-      <div class="box reveal">
-        <h2 class="workshop-title reveal-left">Workshop Membatik</h2>
-        <p class="workshop-date reveal-left">Pusat Kerajinan Batik SHAHO, 27 Oktober 2025</p>
+        <div class="article-divider reveal"><span>◆</span></div>
 
-        <div class="content-2col">
-          <div class="text-side reveal-left delay-1">
-            <p>Workshop Membatik Kebudayaan Kota Balikpapan Tahun 2025 merupakan kegiatan pelatihan dan pengembangan keterampilan membatik yang bertujuan untuk meningkatkan pengetahuan, kreativitas, dan kemampuan masyarakat dalam seni batik khas daerah.</p>
-            <p>Kegiatan ini menjadi bagian dari upaya pelestarian budaya lokal sekaligus mendorong tumbuhnya pelaku ekonomi kreatif berbasis budaya di Kota Balikpapan.</p>
-            <p>Melalui workshop ini, peserta akan mendapatkan pembelajaran mengenai sejarah dan filosofi batik, teknik dasar membatik, penggunaan alat dan bahan, hingga praktik pembuatan motif batik yang terinspirasi dari kekayaan budaya dan kearifan lokal Kota Balikpapan.</p>
-            <p>Kegiatan ini diharapkan dapat menumbuhkan kecintaan masyarakat terhadap budaya daerah, memperkuat identitas budaya lokal, serta menciptakan ruang kreativitas bagi generasi muda dan pelaku seni budaya di Kota Balikpapan.</p>
-          </div>
+        <span class="article-eyebrow reveal">Pelatihan</span>
+        <h2 class="section-title reveal">Workshop Membatik</h2>
+        <p class="workshop-meta reveal">Pusat Kerajinan Batik SHAHO · 27 Oktober 2025</p>
 
-          <div class="reveal-zoom delay-2">
-            <div class="video-wrapper">
-              <iframe 
-                src="https://www.youtube.com/embed/qtOYQU3DLKM" 
-                title="Workshop Membatik 2025"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allowfullscreen>
-              </iframe>
-            </div>
-          </div>
-        </div>
-      </div>
+        <p class="drop-cap reveal">
+          <strong>Workshop Membatik Kebudayaan Kota Balikpapan Tahun 2025</strong> merupakan kegiatan pelatihan dan pengembangan keterampilan membatik yang bertujuan untuk meningkatkan pengetahuan, kreativitas, dan kemampuan masyarakat dalam seni batik khas daerah.
+        </p>
+        <p class="reveal">
+          Kegiatan ini menjadi bagian dari upaya pelestarian budaya lokal sekaligus mendorong tumbuhnya pelaku ekonomi kreatif berbasis budaya di Kota Balikpapan.
+        </p>
 
-      <!-- KOTAK 3: WORKSHOP TATA KELOLA LEMBAGA KESENIAN (8 FOTO) -->
-      <div class="box reveal">
-        <h2 class="workshop-title reveal-left">Workshop Tata Kelola Lembaga Kesenian</h2>
-        <p class="workshop-date reveal-left">Hotel Zurich Balikpapan, 13 November 2025</p>
-
-        <div class="text-side reveal">
-          <p>Lembaga kesenian tradisional seperti sanggar, paguyuban, komunitas adat, dan kelompok seni lokal memegang peran penting dalam pelestarian, pengembangan, serta pewarisan seni tradisi kepada generasi berikutnya. Kegiatan Workshop Peningkatan Kapasitas Tata Kelola Lembaga Kesenian Tradisional Tahun 2025 yang diselenggarakan oleh Dinas Pendidikan dan Kebudayaan Kota Balikpapan. Workshop ini dimaksudkan sebagai upaya untuk memperkuat kapasitas pengelolaan lembaga kesenian tradisional sehingga mampu beroperasi secara lebih profesional, efektif, dan adaptif terhadap perkembangan zaman.</p>
-          <p>Kegiatan ini menjadi wadah bagi para pengurus, pelaku seni, dan komunitas budaya untuk memperoleh pengetahuan, keterampilan, dan strategi yang diperlukan dalam mengelola, melestarikan, serta mengembangkan seni tradisi di lingkungan masing-masing.</p>
+        <div class="pull-quote reveal">
+          Workshop membatik menjadi ruang kreativitas yang menghubungkan tradisi dengan ekonomi kreatif masa kini.
         </div>
 
-        <div class="galeri-8">
+        <p class="reveal">
+          Melalui workshop ini, peserta akan mendapatkan pembelajaran mengenai sejarah dan filosofi batik, teknik dasar membatik, penggunaan alat dan bahan, hingga praktik pembuatan motif batik yang terinspirasi dari kekayaan budaya dan kearifan lokal Kota Balikpapan.
+        </p>
+        <p class="reveal">
+          Kegiatan ini diharapkan dapat menumbuhkan kecintaan masyarakat terhadap budaya daerah, memperkuat identitas budaya lokal, serta menciptakan ruang kreativitas bagi generasi muda dan pelaku seni budaya di Kota Balikpapan.
+        </p>
+
+        <div class="video-wrapper reveal-zoom">
+          <iframe 
+            src="https://www.youtube.com/embed/qtOYQU3DLKM" 
+            title="Workshop Membatik 2025"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen>
+          </iframe>
+        </div>
+
+        <div class="article-divider reveal"><span>◆</span></div>
+
+        <span class="article-eyebrow reveal">Pembinaan</span>
+        <h2 class="section-title reveal">Workshop Tata Kelola Lembaga Kesenian</h2>
+        <p class="workshop-meta reveal">Hotel Zurich Balikpapan · 13 November 2025</p>
+
+        <p class="drop-cap reveal">
+          Lembaga kesenian tradisional seperti sanggar, paguyuban, komunitas adat, dan kelompok seni lokal memegang peran penting dalam pelestarian, pengembangan, serta pewarisan seni tradisi kepada generasi berikutnya.
+        </p>
+        <p class="reveal">
+          Kegiatan <strong>Workshop Peningkatan Kapasitas Tata Kelola Lembaga Kesenian Tradisional Tahun 2025</strong> yang diselenggarakan oleh Dinas Pendidikan dan Kebudayaan Kota Balikpapan dimaksudkan sebagai upaya untuk memperkuat kapasitas pengelolaan lembaga kesenian tradisional sehingga mampu beroperasi secara lebih profesional, efektif, dan adaptif terhadap perkembangan zaman.
+        </p>
+        <p class="reveal">
+          Kegiatan ini menjadi wadah bagi para pengurus, pelaku seni, dan komunitas budaya untuk memperoleh pengetahuan, keterampilan, dan strategi yang diperlukan dalam mengelola, melestarikan, serta mengembangkan seni tradisi di lingkungan masing-masing.
+        </p>
+
+        <div class="gallery-8">
           <img class="reveal-img delay-1" src="pelatihan1.jpg" alt="Workshop Kesenian 1" onclick="openLightbox(['pelatihan1.jpg','pelatihan2.jpg','pelatihan3.jpg','pelatihan4.jpg','pelatihan5.jpg','pelatihan6.jpg','pelatihan7.jpg','pelatihan8.jpg'], 0)">
           <img class="reveal-img delay-2" src="pelatihan2.jpg" alt="Workshop Kesenian 2" onclick="openLightbox(['pelatihan1.jpg','pelatihan2.jpg','pelatihan3.jpg','pelatihan4.jpg','pelatihan5.jpg','pelatihan6.jpg','pelatihan7.jpg','pelatihan8.jpg'], 1)">
           <img class="reveal-img delay-3" src="pelatihan3.jpg" alt="Workshop Kesenian 3" onclick="openLightbox(['pelatihan1.jpg','pelatihan2.jpg','pelatihan3.jpg','pelatihan4.jpg','pelatihan5.jpg','pelatihan6.jpg','pelatihan7.jpg','pelatihan8.jpg'], 2)">
@@ -587,42 +801,54 @@
           <img class="reveal-img delay-8" src="pelatihan8.jpg" alt="Workshop Kesenian 8" onclick="openLightbox(['pelatihan1.jpg','pelatihan2.jpg','pelatihan3.jpg','pelatihan4.jpg','pelatihan5.jpg','pelatihan6.jpg','pelatihan7.jpg','pelatihan8.jpg'], 7)">
         </div>
 
-        <div class="copyright-mark reveal">© Disdikbud Bidang Kebudayaan Kota Balikpapan</div>
-      </div>
+        <p class="copyright-mark reveal">© Disdikbud Bidang Kebudayaan Kota Balikpapan</p>
 
-      <!-- KOTAK 4: WORKSHOP TATA KELOLA LEMBAGA ADAT -->
-      <div class="box reveal">
-        <h2 class="workshop-title reveal-left">Workshop Tata Kelola Lembaga Adat</h2>
-        <p class="workshop-date reveal-left">Hotel Zurich Balikpapan, 18 November 2025</p>
+        <div class="article-divider reveal"><span>◆</span></div>
 
-        <div class="content-2col">
-          <div class="text-side reveal-left">
-            <p>Lembaga Adat seperti paguyuban, komunitas adat seni lokal memegang peran penting dalam pelestarian, pengembangan, serta pewarisan seni tradisi kepada generasi berikutnya. Kegiatan Workshop Peningkatan Kapasitas Tata Kelola Lembaga Kesenian Tradisional Tahun 2025 yang diselenggarakan oleh Dinas Pendidikan dan Kebudayaan Kota Balikpapan. Workshop ini dimaksudkan sebagai upaya untuk memperkuat kapasitas pengelolaan lembaga kesenian tradisional sehingga mampu beroperasi secara lebih profesional, efektif, dan adaptif terhadap perkembangan zaman. Kegiatan ini menjadi wadah bagi para pengurus, pelaku lembaga adat dan komunitas budaya untuk memperoleh pengetahuan, keterampilan, dan strategi yang diperlukan dalam mengelola, melestarikan, serta mengembangkan seni tradisi di lingkungan masing-masing.</p>
-          </div>
+        <span class="article-eyebrow reveal">Pembinaan</span>
+        <h2 class="section-title reveal">Workshop Tata Kelola Lembaga Adat</h2>
+        <p class="workshop-meta reveal">Hotel Zurich Balikpapan · 18 November 2025</p>
 
-          <div class="reveal-zoom delay-1">
-            <img src="pelatihan9.jpg" alt="Workshop Adat 1" onclick="openLightbox('pelatihan9.jpg')" style="border-radius: 14px; box-shadow: 0 6px 18px rgba(74,8,18,.1); cursor: zoom-in; aspect-ratio: 4/3; object-fit: cover; border: 1px solid var(--line);">
-          </div>
+        <p class="drop-cap reveal">
+          Lembaga Adat seperti paguyuban dan komunitas adat seni lokal memegang peran penting dalam pelestarian, pengembangan, serta pewarisan seni tradisi kepada generasi berikutnya.
+        </p>
+
+        <p class="reveal">
+          Kegiatan Workshop Peningkatan Kapasitas Tata Kelola Lembaga Kesenian Tradisional Tahun 2025 yang diselenggarakan oleh Dinas Pendidikan dan Kebudayaan Kota Balikpapan dimaksudkan sebagai upaya untuk memperkuat kapasitas pengelolaan lembaga kesenian tradisional sehingga mampu beroperasi secara lebih profesional, efektif, dan adaptif terhadap perkembangan zaman.
+        </p>
+
+        <div class="pull-quote reveal">
+          Kegiatan ini menjadi wadah bagi para pengurus, pelaku lembaga adat, dan komunitas budaya untuk memperoleh pengetahuan, keterampilan, serta strategi dalam mengelola dan mengembangkan seni tradisi.
         </div>
 
-        <div class="galeri-3col" style="grid-template-columns: repeat(2, 1fr); margin-top: 22px;">
-          <img class="reveal-img delay-1" src="pelatihan10.jpg" alt="Workshop Adat 2" onclick="openLightbox('pelatihan10.jpg')">
-          <img class="reveal-img delay-2" src="pelatihan11.jpg" alt="Workshop Adat 3" onclick="openLightbox('pelatihan11.jpg')">
+        <figure class="article-figure reveal-zoom delay-1" onclick="openLightbox('pelatihan9.jpg')">
+          <img src="pelatihan9.jpg" alt="Workshop Adat 1">
+          <figcaption>Suasana Workshop Tata Kelola Lembaga Adat Kota Balikpapan.</figcaption>
+        </figure>
+
+        <div class="figure-grid-2">
+          <figure class="article-figure reveal-img delay-1" onclick="openLightbox('pelatihan10.jpg')">
+            <img src="pelatihan10.jpg" alt="Workshop Adat 2">
+          </figure>
+          <figure class="article-figure reveal-img delay-2" onclick="openLightbox('pelatihan11.jpg')">
+            <img src="pelatihan11.jpg" alt="Workshop Adat 3">
+          </figure>
         </div>
 
-        <div class="copyright-mark reveal">© Disdikbud Bidang Kebudayaan Kota Balikpapan</div>
-      </div>
+        <div class="end-mark reveal">◆ ◆ ◆</div>
 
+        <p class="copyright-mark reveal">© Disdikbud Bidang Kebudayaan Kota Balikpapan</p>
+
+      </article>
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer>
     <div class="container">
       <div class="footer-top">
         <div class="reveal delay-1">
           <div class="footer-brand">
-            <div class="footer-brand-mark">SB</div>
+            <img src="logo-sibaya.png" alt="Logo SIBAYA" class="footer-brand-logo">
             <div class="footer-brand-name">SIBAYA</div>
           </div>
           <p>
@@ -631,33 +857,31 @@
           </p>
         </div>
         <div class="reveal delay-2">
-          <h4>Navigasi</h4>
-          <p><a href="profil.html">Profil</a></p>
-          <p><a href="cagar-budaya.html">Cagar Budaya</a></p>
-          <p><a href="sanggar-binaan.html">Sanggar Binaan</a></p>
-          <p><a href="mitra-kebudayaan.html">Mitra Kebudayaan</a></p>
-        </div>
-        <div class="reveal delay-3">
           <h4>Kontak</h4>
-          <p>aryaqu007@gmail.com</p>
+          <p>ylia85151@gmail.com</p>
           <p>+62 812 5416 353</p>
           <p>info@sibayabalikpapan.online</p>
         </div>
-        <div class="reveal delay-4">
+        <div class="reveal delay-3">
           <h4>Link Terkait</h4>
           <p><a href="https://dapobud.kemenbud.go.id" target="_blank">dapobud.kemenbud.go.id</a></p>
           <p><a href="https://kemenbud.go.id" target="_blank">kemenbud.go.id</a></p>
         </div>
       </div>
       <div class="footer-copy">
-        © 2026 SIBAYA — Sistem Informasi Budaya Kota Balikpapan. Seluruh hak cipta dilindungi.
+        © 2026 <strong>SIBAYA</strong> — Sistem Informasi Budaya Kota Balikpapan. Seluruh hak cipta dilindungi.
       </div>
     </div>
   </footer>
 
   <button class="to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Kembali ke atas">↑</button>
 
-  <!-- LIGHTBOX -->
+  <audio id="bgMusic" loop preload="auto">
+    <source src="musik.mp3" type="audio/mpeg">
+  </audio>
+
+  <button class="music-btn" id="musicBtn" aria-label="Toggle musik" title="Nyalakan / matikan musik">♪</button>
+
   <div class="lightbox" id="lightbox" onclick="closeLightbox()">
     <button class="close-btn" onclick="closeLightbox(event)">&times;</button>
     <button class="nav-btn prev" onclick="prevLightbox(event)">❮</button>
@@ -666,7 +890,13 @@
   </div>
 
 <script>
-  /* PROGRESS BAR + NAVBAR SCROLL */
+  document.documentElement.classList.remove('no-js');
+
+  if ('scrollRestoration' in history){
+    history.scrollRestoration = 'manual';
+  }
+  window.scrollTo(0, 0);
+
   const progressBar = document.getElementById('progressBar');
   const navbar = document.getElementById('navbar');
   const toTopBtn = document.querySelector('.to-top');
@@ -675,26 +905,27 @@
     const s = window.scrollY;
     const d = document.documentElement.scrollHeight - window.innerHeight;
     progressBar.style.width = (s / d) * 100 + '%';
-    navbar.classList.toggle('scrolled', s > 30);
-    toTopBtn.classList.toggle('visible', s > 500);
-  });
+    if (s > 40) navbar.classList.add('scrolled');
+    else navbar.classList.remove('scrolled');
+    if (s > 500) toTopBtn.classList.add('visible');
+    else toTopBtn.classList.remove('visible');
+  }, { passive:true });
 
-  /* NAVBAR AKTIF */
   const currentPage = window.location.pathname.split('/').pop() || 'index.html';
   document.querySelectorAll('.nav-links a').forEach(link => {
-    link.classList.toggle('active', link.getAttribute('href') === currentPage);
+    const href = link.getAttribute('href');
+    if (href === currentPage) link.classList.add('active');
+    else link.classList.remove('active');
   });
 
-  /* HAMBURGER */
   const hamburger = document.getElementById('hamburger');
   const navLinks = document.getElementById('navLinks');
   hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
-  document.querySelectorAll('.nav-links a').forEach(l => l.addEventListener('click', () => navLinks.classList.remove('open')));
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => navLinks.classList.remove('open'));
+  });
 
-  /* REVEAL — SMOOTH */
-  const revealEls = document.querySelectorAll(
-    '.reveal, .reveal-left, .reveal-right, .reveal-zoom, .reveal-img'
-  );
+  const revealEls = document.querySelectorAll('.reveal, .reveal-img, .reveal-zoom');
   const revealObs = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting){
@@ -705,7 +936,29 @@
   }, { threshold:.08, rootMargin:'0px 0px -40px 0px' });
   revealEls.forEach(el => revealObs.observe(el));
 
-  /* LIGHTBOX dengan navigasi */
+  function checkVisibleNow(){
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+    revealEls.forEach(el => {
+      if (el.classList.contains('active')) return;
+      const rect = el.getBoundingClientRect();
+      if (rect.top < vh && rect.bottom > 0){
+        el.classList.add('active');
+        revealObs.unobserve(el);
+      }
+    });
+  }
+  requestAnimationFrame(() => requestAnimationFrame(checkVisibleNow));
+  if (document.fonts && document.fonts.ready){document.fonts.ready.then(checkVisibleNow);}
+  window.addEventListener('load', () => {
+    setTimeout(checkVisibleNow, 100);
+    setTimeout(checkVisibleNow, 400);
+  });
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(checkVisibleNow, 150);
+  });
+
   let lightboxImages = [];
   let lightboxIndex = 0;
 
@@ -749,6 +1002,95 @@
     if (e.key === 'ArrowRight') nextLightbox();
     if (e.key === 'ArrowLeft') prevLightbox();
   });
+
+  /* MUSIK UNIVERSAL */
+  (function(){
+    const bgMusic = document.getElementById('bgMusic');
+    const musicBtn = document.getElementById('musicBtn');
+    if (!bgMusic || !musicBtn) return;
+
+    const KEY_PLAYING = 'sibaya_music_playing';
+    const KEY_TIME    = 'sibaya_music_time';
+    const KEY_VOLUME  = 'sibaya_music_volume';
+
+    const savedVol = parseFloat(localStorage.getItem(KEY_VOLUME));
+    bgMusic.volume = isNaN(savedVol) ? 0.25 : savedVol;
+
+    const savedTime = parseFloat(localStorage.getItem(KEY_TIME));
+    if (!isNaN(savedTime) && savedTime > 0){
+      const setTime = () => { try { bgMusic.currentTime = savedTime; } catch(e){} };
+      if (bgMusic.readyState >= 1) setTime();
+      else bgMusic.addEventListener('loadedmetadata', setTime, { once:true });
+    }
+
+    function syncBtn(){
+      if (bgMusic.paused) musicBtn.classList.add('muted');
+      else musicBtn.classList.remove('muted');
+    }
+
+    setInterval(() => {
+      if (!bgMusic.paused) localStorage.setItem(KEY_TIME, bgMusic.currentTime);
+    }, 1000);
+
+    window.addEventListener('beforeunload', () => {
+      localStorage.setItem(KEY_TIME, bgMusic.currentTime);
+      localStorage.setItem(KEY_PLAYING, bgMusic.paused ? '0' : '1');
+      localStorage.setItem(KEY_VOLUME, bgMusic.volume);
+    });
+
+    function toggleMusic(e){
+      if (e) e.stopPropagation();
+      if (bgMusic.paused){
+        bgMusic.muted = false;
+        bgMusic.play().then(() => {
+          localStorage.setItem(KEY_PLAYING, '1');
+          syncBtn();
+        }).catch(() => {});
+      } else {
+        bgMusic.pause();
+        localStorage.setItem(KEY_PLAYING, '0');
+        syncBtn();
+      }
+    }
+    musicBtn.addEventListener('click', toggleMusic);
+
+    const wasPlaying = localStorage.getItem(KEY_PLAYING);
+
+    if (wasPlaying === '1'){
+      bgMusic.muted = false;
+      bgMusic.play().then(() => syncBtn()).catch(() => {
+        const resume = () => {
+          bgMusic.play().then(() => { syncBtn(); }).catch(() => {});
+          document.removeEventListener('click', resume);
+          document.removeEventListener('touchstart', resume);
+          document.removeEventListener('keydown', resume);
+        };
+        document.addEventListener('click', resume, { once:true });
+        document.addEventListener('touchstart', resume, { once:true });
+        document.addEventListener('keydown', resume, { once:true });
+      });
+    } else if (wasPlaying === '0'){
+      syncBtn();
+    } else {
+      bgMusic.muted = true;
+      bgMusic.play().then(() => {
+        const unmuteOnInteract = () => {
+          bgMusic.muted = false;
+          bgMusic.play().then(() => {
+            localStorage.setItem(KEY_PLAYING, '1');
+            syncBtn();
+          }).catch(() => {});
+          document.removeEventListener('click', unmuteOnInteract);
+          document.removeEventListener('touchstart', unmuteOnInteract);
+          document.removeEventListener('keydown', unmuteOnInteract);
+        };
+        document.addEventListener('click', unmuteOnInteract, { once:true });
+        document.addEventListener('touchstart', unmuteOnInteract, { once:true });
+        document.addEventListener('keydown', unmuteOnInteract, { once:true });
+      }).catch(() => {});
+      syncBtn();
+    }
+  })();
 </script>
 </body>
 </html>
